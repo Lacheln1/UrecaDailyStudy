@@ -1,0 +1,25 @@
+.hd{
+    background-color: #282c32;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hd img{
+    width: 200px;
+}
+
+.hd nav{
+    display: flex;
+    gap: 1rem;
+}
+
+
+
+.hd .active{
+    color:aqua
+}
+
