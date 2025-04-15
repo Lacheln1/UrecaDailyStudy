@@ -1,24 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import css from "./Header.module.css";
-import Logo from "./Logo";
+import Logo from "../components/Logo";
 const Header = () => {
+  const [isOn, setIsOn] = useState(false);
   const location = useLocation();
+  console.log(location);
+  console.log(location.pathname);
 
-  console.log(location.pathname); // 현재 경로
-  console.log(location.search); // 쿼리 문자열
-  console.log(location.hash); // URL 해시
-  console.log(location.state); // 전달된 상태 객체
+  const addClassOn = () => {
+    setIsOn(!isOn);
+  };
+
+  useEffect(() => {
+    setIsOn(false);
+  }, [location.pathname]);
+
+  const handleResize = () => {
+    if (window.innerWidth > 1100) {
+      setIsOn(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <header className={css.hd}>
-      <div>Current path: {JSON.stringify(location.state)}</div>
       <div className={css.con}>
         <h1 className={css.logo}>
           <Link to={"/"}>
             <Logo />
           </Link>
         </h1>
-        <div className={css.gnb}>
+        <div className={isOn ? `${css.gnb} ${css.on}` : css.gnb}>
           <nav>
             <CustomNavLink to={"/shop"} label={"shop"} />
             <CustomNavLink to={"/about"} label={"about"} />
@@ -30,7 +49,11 @@ const Header = () => {
             <CustomIconLink to={"/cart"} icon={"bi-basket"} />
           </div>
         </div>
-        <i className={css.ham}>햄버거</i>
+        <i
+          className={`${css.ham} bi bi-list`}
+          title="전체메뉴 보기버튼"
+          onClick={addClassOn}
+        ></i>
       </div>
     </header>
   );
@@ -40,7 +63,6 @@ const CustomNavLink = ({ to, label }) => (
   <NavLink
     className={({ isActive }) => (isActive ? `${css.active}` : "")}
     to={to}
-    state={{ data: "hello" }}
   >
     {label}
   </NavLink>
