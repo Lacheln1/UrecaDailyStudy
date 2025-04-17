@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import css from "./DetailPage.module.css";
+import { formmatCurrency } from "@/utils/features";
 
 const DetailPage = () => {
   const { product, relatedProducts } = useLoaderData();
@@ -12,20 +13,23 @@ const DetailPage = () => {
       <h2>DetailPage</h2>
       <div className={css.detailCon}>
         <div className={css.imgWrap}>
-          <img src="/public/img/image1.jpg" alt="상품명" />
+          <img src={`/public/img/${product.img}`} alt={product.title} />
+          {product.discount > 0 && (
+            <p className={css.discount}>{product.discount} %</p>
+          )}
         </div>
         <div className={css.infoWrap}>
-          <p>상품명</p>
-          <p>가격</p>
-          <p>할인율</p>
-        </div>
-        <div className={css.btnWrap}>
-          <div className={css.counterArea}>
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
+          <p className={css.title}>{product.title}</p>
+          <p className={css.price}>{formmatCurrency(product.price)}</p>
+          <p className={css.category}>{product.category}</p>
+          <div className={css.btnWrap}>
+            <div className={css.counterArea}>
+              <button>-</button>
+              <span>1</span>
+              <button>+</button>
+            </div>
+            <button className={css.addBtn}>장바구니 담기</button>
           </div>
-          <button className={css.addBtn}>장바구니 담기</button>
         </div>
       </div>
       <div>텝메뉴</div>
