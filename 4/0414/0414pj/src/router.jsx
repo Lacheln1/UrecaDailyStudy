@@ -1,11 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import Default from "./layout/Default";
-import MainPage from "./pages/MainPage";
-import AboutPage from "./pages/AboutPage";
 import NotFound from "./pages/NotFound";
 import ShopPage from "./pages/ShopPage";
 import BlogPage from "./pages/BlogPage";
 import CartPage from "./pages/CartPage";
+import MainPage from "./pages/MainPage";
+import AboutPage from "./pages/AboutPage";
+import DetailPage from "./pages/DetailPage";
+import { getProductById } from "./api/productApi";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +21,18 @@ const router = createBrowserRouter([
       { path: "/shop", element: <ShopPage /> },
       { path: "/blog", element: <BlogPage /> },
       { path: "/cart", element: <CartPage /> },
+      {
+        path: "/detail/:productId",
+        element: <DetailPage />,
+        loader: async ({ params }) => {
+          try {
+            const product = await getProductById(params.productId);
+            return product; // return한 product는 detailpage컴포넌트에 값이 간다
+          } catch (error) {
+            console.log("err", error);
+          }
+        },
+      },
     ],
   },
   {

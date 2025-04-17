@@ -5,13 +5,14 @@
     rgba(255, 255, 255, 1) 50%,
     rgba(255, 255, 255, 0) 100%
   );
-  /* position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0; */
+  padding: var(--fs16) 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99999;
 }
 .con {
-  border: 1px solid red;
   max-width: 1200px;
   width: calc(100% - 4rem);
   margin: auto;
@@ -24,13 +25,10 @@
   align-items: center;
   gap: var(--fs33);
 }
-.gnb > * {
-  border: 1px solid blue;
-}
+
 .gnb nav,
 .gnb .icon {
   display: flex;
-  /* gap: var(--fs16); */
 }
 .gnb a {
   display: block;
@@ -38,7 +36,6 @@
 }
 .gnb nav a {
   font-size: var(--fs20);
-  border: 1px solid red;
   position: relative;
 }
 .gnb nav a::before {
@@ -71,13 +68,35 @@
 
 @media (max-width: 1100px) {
   .gnb {
-    display: none;
+    display: flex;
+    position: fixed;
+    width: 70%;
+    height: 100%;
+    border: 2px solid red;
+    top: 0;
+    right: -100%;
+    background-color: white;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.3s;
+  }
+  .gnb.on {
+    right: 0;
+  }
+  .gnb nav {
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid lightgray;
+    width: 70%;
+  }
+  h1 {
+    position: relative;
+    z-index: 10;
   }
   .ham {
     display: block;
     cursor: pointer;
+    position: relative;
+    z-index: 10;
   }
-}
-
-@media (max-width: 600px) {
 }

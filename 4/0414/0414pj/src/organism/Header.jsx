@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import css from "./Header.module.css";
 import Logo from "../components/Logo";
+
 const Header = () => {
   const [isOn, setIsOn] = useState(false);
   const location = useLocation();
-  console.log(location);
-  console.log(location.pathname);
 
   const addClassOn = () => {
     setIsOn(!isOn);

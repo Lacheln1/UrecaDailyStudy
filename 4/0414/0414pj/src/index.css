@@ -49,16 +49,24 @@
   --fs26: 24px;
   --fs33: 33px;
   --fs64: 64px;
+
+  line-height: 1.6;
 }
 body {
   background-color: #eaeaea;
 }
+
 main,
 footer {
-  padding: var(--fs33) 0;
   max-width: 1200px;
   width: calc(100% - 4rem);
   margin: auto;
+}
+main {
+  padding: 100px 0 var(--fs33);
+}
+footer {
+  padding: var(--fs33) 0;
 }
 main h2 {
   font-size: var(--fs33);
