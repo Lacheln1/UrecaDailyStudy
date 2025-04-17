@@ -9,6 +9,7 @@ import MainPage from "./pages/MainPage";
 import AboutPage from "./pages/AboutPage";
 import DetailPage from "./pages/DetailPage";
 import { getProductById } from "./api/productApi";
+import { detailPageLoader } from "./loaders/productsLoaders";
 
 const router = createBrowserRouter([
   {
@@ -24,16 +25,7 @@ const router = createBrowserRouter([
       {
         path: "/detail/:productId",
         element: <DetailPage />,
-        loader: async ({ info }) => {
-          console.log("router.jsx:info", info);
-          const params = info.params;
-          try {
-            const product = await getProductById(params.productId);
-            return product; // return한 product는 detailpage컴포넌트에 값이 간다
-          } catch (error) {
-            console.log("err", error);
-          }
-        },
+        loader: detailPageLoader,
       },
     ],
   },
