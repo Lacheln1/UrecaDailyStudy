@@ -24,7 +24,9 @@ const router = createBrowserRouter([
       {
         path: "/detail/:productId",
         element: <DetailPage />,
-        loader: async ({ params }) => {
+        loader: async ({ info }) => {
+          console.log("router.jsx:info", info);
+          const params = info.params;
           try {
             const product = await getProductById(params.productId);
             return product; // return한 product는 detailpage컴포넌트에 값이 간다
