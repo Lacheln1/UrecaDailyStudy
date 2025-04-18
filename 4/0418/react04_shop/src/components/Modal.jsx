@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import css from './Modal.module.css';
 import { formmatCurrency } from '@/utils/features';
+import { useNavigate } from 'react-router-dom';
 
 const Modal = ({ product, count, onClose }) => {
   const [isActive, setIsActive] = useState(false);
+  const navigate = useNavigate();
 
   //컴포넌트가 마운트 된 직후 active 클래스 추가
   useEffect(() => {
@@ -38,6 +40,7 @@ const Modal = ({ product, count, onClose }) => {
     }*/
     //모달 닫기
     //장바구니 페이지 이동
+    navigate('/cart');
   };
 
   return (
@@ -55,7 +58,7 @@ const Modal = ({ product, count, onClose }) => {
             <p>총 가격 : {formmatCurrency(product.price * count)}</p>
           </div>
           <button onClick={handleClose}>취소</button>
-          <button>장바구니 담기</button>
+          <button onClick={handleAddToCart}>장바구니 담기</button>
         </div>
         <button className={css.btnClose} onClick={handleClose}>
           <i className="bi bi-x-lg"></i>
