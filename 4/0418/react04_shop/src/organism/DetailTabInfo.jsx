@@ -5,7 +5,7 @@ const DetailTabInfo = () => {
   return (
     <>
       <div className={css.tabBtn}>
-        <button>메뉴1</button>
+        <button className={css.active}>메뉴1</button>
         <button>메뉴2</button>
         <button>메뉴3</button>
       </div>
