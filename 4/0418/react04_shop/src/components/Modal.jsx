@@ -23,6 +23,23 @@ const Modal = ({ product, count, onClose }) => {
     setIsActive(false);
     setTimeout(onClose, 300);
   };
+
+  const handleAddToCart = () => {
+    //장바구니 상품 추가 json-server추가
+    /*
+     cartItem={
+      "id": 15,
+      "title": "test5",
+      "img": "image5.jpg",
+      "price": 35000,
+      "category": "top",
+      "discount": 3,
+      "count": 1
+    }*/
+    //모달 닫기
+    //장바구니 페이지 이동
+  };
+
   return (
     <div className={`${css.modal} ${isActive ? css.active : ''}`}>
       <div className={`${css.container} `}>
