@@ -22,7 +22,7 @@
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
-.tabContent .active {
+.tabContent.active {
   display: block;
   opacity: 1;
   animation: fadeIn 0.3s ease-in-out;

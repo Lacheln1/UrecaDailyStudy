@@ -1,30 +1,31 @@
-import React, { useState, useEffect } from 'react'
-import { useLoaderData } from 'react-router-dom'
-import css from './DetailPage.module.css'
-import { formmatCurrency } from '@/utils/features'
-import DetailTabInfo from '@/organism/DetailTabInfo'
+import React, { useState, useEffect } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import css from './DetailPage.module.css';
+import { formmatCurrency } from '@/utils/features';
+import DetailTabInfo from '@/organism/DetailTabInfo';
+import SimilarProducts from '@/organism/SimilarProducts';
 
 const DetailPage = () => {
-  const { product, relatedProducts } = useLoaderData()
-  console.log('DetailPage:product', product)
-  console.log('DetailPage:relatedProducts', relatedProducts)
+  const { product, relatedProducts } = useLoaderData();
+  console.log('DetailPage:product', product);
+  console.log('DetailPage:relatedProducts', relatedProducts);
 
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // 컴포넌트가 마운트된 직후에는 로딩 상태로 표시
-    setIsLoading(true)
+    setIsLoading(true);
 
     // 데이터가 로드된 후 로딩 상태 해제
     if (product && product.id) {
       // 약간의 지연 효과를 줘서 로딩 화면을 확인할 수 있도록
       const timer = setTimeout(() => {
-        setIsLoading(false)
-      }, 0)
+        setIsLoading(false);
+      }, 0);
 
-      return () => clearTimeout(timer)
+      return () => clearTimeout(timer);
     }
-  }, [product])
+  }, [product]);
 
   // 로딩 스피너 (부트 스트랩 이용)
   if (isLoading) {
@@ -34,7 +35,7 @@ const DetailPage = () => {
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -60,12 +61,11 @@ const DetailPage = () => {
           </div>
         </div>
       </div>
-      <div>
-        <DetailTabInfo />
-      </div>
-      <div>관련상품 들어가는 곳</div>
-    </main>
-  )
-}
 
-export default DetailPage
+      <DetailTabInfo />
+      <SimilarProducts relatedProducts={relatedProducts} />
+    </main>
+  );
+};
+
+export default DetailPage;
