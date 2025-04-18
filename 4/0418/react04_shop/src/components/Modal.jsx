@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import css from './Modal.module.css';
+import { formmatCurrency } from '@/utils/features';
 
 const Modal = ({ product, count, onClose }) => {
   const [isActive, setIsActive] = useState(false);
 
   //컴포넌트가 마운트 된 직후 active 클래스 추가
   useEffect(() => {
-    setIsActive(true);
-    // 스크롤 생기는걸 막음
-    document.body.style.overflow = 'hidden';
+    const timer = setTimeout(() => {
+      setIsActive(true);
+      // 스크롤 생기는걸 막음
+      document.body.style.overflow = 'hidden';
+    }, 5);
+
     return () => {
+      clearTimeout(timer);
       document.body.style.overflow = 'auto';
     };
   }, []);
@@ -27,9 +32,10 @@ const Modal = ({ product, count, onClose }) => {
             <img src={`/public/img/${product.img}`} alt={product.title} />
           </div>
           <div className={css.info}>
-            <p>{product.price}</p>
-            <p>{product.discount}</p>
+            <p>{formmatCurrency(product.price)}</p>
+            {product.discount > 0 && <p>{product.discount}</p>}
             <p>{count}</p>
+            <p>총 가격 : {formmatCurrency(product.price * count)}</p>
           </div>
           <button onClick={handleClose}>취소</button>
           <button>장바구니 담기</button>
