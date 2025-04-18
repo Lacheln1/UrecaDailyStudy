@@ -10,7 +10,11 @@ const DetailTabInfo = () => {
     <>
       <div className={css.tabBtn}>
         {tabTiles.map((title, i) => (
-          <button key={i} className={css.active} onClick={() => setActive(i)}>
+          <button
+            key={i}
+            className={activeTab === i ? css.active : ''}
+            onClick={() => setActive(i)}
+          >
             {title}
           </button>
         ))}
@@ -18,7 +22,7 @@ const DetailTabInfo = () => {
         <button>메뉴2</button>
         <button>메뉴3</button>
       </div>
-      <div className={css.tabContent}>
+      <div className={`${css.tabContent}``${activeTab == 0 ? css.active : ''}`}>
         <h3>제목1</h3>
         <p>내용</p>
         <p>내용</p>
@@ -26,8 +30,7 @@ const DetailTabInfo = () => {
         <p>내용</p>
         <p>내용</p>
       </div>
-
-      <div className={css.tabContent}>
+      <div className={`${css.tabContent}``${activeTab == 1 ? css.active : ''}`}>
         <h3>제목2</h3>
         <p>내용</p>
         <p>내용</p>
@@ -35,8 +38,7 @@ const DetailTabInfo = () => {
         <p>내용</p>
         <p>내용</p>
       </div>
-
-      <div className={css.tabContent}>
+      <div className={`${css.tabContent}``${activeTab == 2 ? css.active : ''}`}>
         <h3>제목3</h3>
         <p>내용</p>
         <p>내용</p>
