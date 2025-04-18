@@ -73,3 +73,14 @@ main > * {
   border-radius: var(--fs8);
   border: 1px solid var(--dark-colors-accent-dark);
 }
+
+/* 모바일 화면 처리  */
+
+@media (max-width: 600px) {
+  .detailCon {
+    flex-direction: column;
+  }
+  .imgWrap {
+    width: 100%;
+  }
+}
