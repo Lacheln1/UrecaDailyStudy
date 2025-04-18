@@ -25,6 +25,7 @@ const DetailPage = () => {
     }
   }, [product])
 
+  // 로딩 스피너 (부트 스트랩 이용)
   if (isLoading) {
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ height: '50vh' }}>
