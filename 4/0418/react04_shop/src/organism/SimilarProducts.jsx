@@ -6,7 +6,7 @@ import ProductCard from '@/components/ProductCard';
 const SimilarProducts = ({ relatedProducts }) => {
   console.log('relatedProducts----', relatedProducts);
   return (
-    <>
+    <div className={css.container}>
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
@@ -36,7 +36,7 @@ const SimilarProducts = ({ relatedProducts }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };
 

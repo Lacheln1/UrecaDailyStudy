@@ -1,0 +1,9 @@
+/* 가로스크롤이 막 생기는 문제가 생김 */
+.similarSlider {
+  overflow: visible;
+}
+
+/* 슬라이더 점들 */
+.similarSlider > div :nth-of-type(2) {
+  bottom: -8px;
+}
