@@ -10,3 +10,5 @@ export const getCartData = async () => {
     // throw err
   }
 };
+
+export const addToCart = async () => {};

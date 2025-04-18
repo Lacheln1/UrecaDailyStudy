@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import css from './Modal.module.css';
 import { formmatCurrency } from '@/utils/features';
 import { useNavigate } from 'react-router-dom';
+import { addToCart } from '@/api/cartApi';
 
 const Modal = ({ product, count, onClose }) => {
   const [isActive, setIsActive] = useState(false);
@@ -26,7 +27,7 @@ const Modal = ({ product, count, onClose }) => {
     setTimeout(onClose, 300);
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     //장바구니 상품 추가 json-server추가
     /*
      cartItem={
@@ -40,7 +41,22 @@ const Modal = ({ product, count, onClose }) => {
     }*/
     //모달 닫기
     //장바구니 페이지 이동
-    navigate('/cart');
+    try {
+      const cartItem = {
+        id: 15,
+        title: 'test5',
+        img: 'image5.jpg',
+        price: 35000,
+        category: 'top',
+        discount: 3,
+        count: count,
+      };
+      await addToCart(cartItem);
+      handleClose();
+      navigate('/cart');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

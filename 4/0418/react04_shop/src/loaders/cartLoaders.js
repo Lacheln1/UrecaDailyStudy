@@ -6,6 +6,7 @@ export const cartPageLoader = async () => {
     if (!cartItems || cartItems.length === 0) {
       return { cartItems: [] };
     }
+    return cartItems;
   } catch (error) {
     console.log(error);
   }
