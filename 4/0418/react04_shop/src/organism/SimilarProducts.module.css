@@ -1,3 +1,7 @@
+.container {
+  overflow: hidden;
+  padding-bottom: 50px;
+}
 /* 가로스크롤이 막 생기는 문제가 생김 */
 .similarSlider {
   overflow: visible;
