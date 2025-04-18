@@ -4,8 +4,14 @@ import css from './Modal.module.css';
 const Modal = ({ product, count, onClose }) => {
   const [isActive, setIsActive] = useState(false);
 
+  //컴포넌트가 마운트 된 직후 active 클래스 추가
   useEffect(() => {
     setIsActive(true);
+    // 스크롤 생기는걸 막음
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, []);
 
   const handleClose = () => {
