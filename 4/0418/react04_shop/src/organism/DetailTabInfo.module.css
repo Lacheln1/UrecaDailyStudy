@@ -1,0 +1,14 @@
+.tabBtn {
+  border-bottom: 1px solid var(--dark-colors-light-gray-dark);
+}
+.tabBtn button {
+  border: none;
+  outline: none;
+  /* 버튼 배경화면 투명 */
+  background-color: transparent;
+  padding: var(--fs12) var(--fs20);
+}
+
+.tabBtn button:hover {
+  border-bottom: 3px solid var(--dark-colors-accent-dark);
+}

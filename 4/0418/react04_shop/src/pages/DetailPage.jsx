@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useLoaderData } from 'react-router-dom'
 import css from './DetailPage.module.css'
 import { formmatCurrency } from '@/utils/features'
+import DetailTabInfo from '@/organism/DetailTabInfo'
 
 const DetailPage = () => {
   const { product, relatedProducts } = useLoaderData()
@@ -59,7 +60,9 @@ const DetailPage = () => {
           </div>
         </div>
       </div>
-      <div>텝메뉴</div>
+      <div>
+        <DetailTabInfo />
+      </div>
       <div>관련상품 들어가는 곳</div>
     </main>
   )

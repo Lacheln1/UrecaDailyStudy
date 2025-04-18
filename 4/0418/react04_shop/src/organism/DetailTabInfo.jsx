@@ -1,4 +1,5 @@
 import React from 'react'
+import css from './DetailTabInfo.module.css'
 
 const DetailTabInfo = () => {
   return (
