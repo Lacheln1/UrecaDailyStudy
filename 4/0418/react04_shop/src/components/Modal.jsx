@@ -1,25 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import css from './Modal.module.css';
 
-const Modal = ({ product, count }) => {
+const Modal = ({ product, count, onClose }) => {
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    setIsActive(true);
+  }, []);
+
+  const handleClose = () => {
+    setIsActive(false);
+    setTimeout(onClose, 300);
+  };
   return (
-    <div className={`${css.modal}`}>
-      <div className={`${css.container} ${css.active}`}>
+    <div className={`${css.modal} ${isActive ? css.active : ''}`}>
+      <div className={`${css.container} `}>
         <div className={css._inner}>
-          컨텐츠가 들어가는 곳<h2>장바구니</h2>
+          <h2>장바구니</h2>
           <div className={css.imgWrap}>
-            <img src={`/public/img${product.img}`} alt={product.title} />
+            <img src={`/public/img/${product.img}`} alt={product.title} />
           </div>
           <div className={css.info}>
-            <p>{product.title}</p>
             <p>{product.price}</p>
             <p>{product.discount}</p>
             <p>{count}</p>
           </div>
-          <button>취소</button>
+          <button onClick={handleClose}>취소</button>
           <button>장바구니 담기</button>
         </div>
-        <button className={css.btnClose}>
+        <button className={css.btnClose} onClick={handleClose}>
           <i className="bi bi-x-lg"></i>
         </button>
       </div>

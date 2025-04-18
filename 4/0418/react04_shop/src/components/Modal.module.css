@@ -5,8 +5,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 9999999;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 99999;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@
   transition:
   /* 0.1초의 딜레이 */
     transform 0.1s 0.3s,
-    opacity0.1s;
+    opacity 0.1s;
   padding: var(--fs33);
   border-radius: var(--fs16);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -43,9 +43,8 @@
   border: none;
   outline: none;
   background-color: transparent;
-  font-size: var(--33);
+  font-size: var(--fs33);
 }
-
 .btnClose:hover i {
   color: var(--dark-colors-white-dark);
 }

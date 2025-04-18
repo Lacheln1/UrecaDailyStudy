@@ -45,6 +45,14 @@ const DetailPage = () => {
     setCount(prev => prev + 1);
   };
 
+  const handleAddToCart = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <main>
       <h2>DetailPage</h2>
@@ -64,14 +72,16 @@ const DetailPage = () => {
               <span>{count}</span>
               <button onClick={increase}>+</button>
             </div>
-            <button className={css.addBtn}>장바구니 담기</button>
+            <button className={css.addBtn} onClick={handleAddToCart}>
+              장바구니 담기
+            </button>
           </div>
         </div>
       </div>
 
       <DetailTabInfo />
       <SimilarProducts relatedProducts={relatedProducts} />
-      {isModalOpen && <Modal product={product} count={count} />}
+      {isModalOpen && <Modal product={product} count={count} onClose={closeModal} />}
     </main>
   );
 };
