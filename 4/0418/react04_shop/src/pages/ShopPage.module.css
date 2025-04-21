@@ -15,11 +15,25 @@
 .searchFn {
   width: 130px;
 }
+.category {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fs8);
+}
 
 .category button {
   width: 100%;
   margin-bottom: var(--fs12);
   border: none;
+  outline: none;
+  padding: var(--fs8) var(--fs16);
+  border-radius: var(--fs8);
+}
+
+.category button:hover,
+.category button.active {
+  background-color: var(--dark-colors-accent-dark);
+  color: var(--dark-colors-white-dark);
 }
 
 .productList {
