@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
-
+import css from './CartPage.module.css';
 const CartPage = () => {
   const cartList = useLoaderData();
   console.log('cartList------', cartList);
@@ -8,7 +8,7 @@ const CartPage = () => {
     <main>
       <h2>CartPage</h2>
       <p>you have 3 item</p>
-      <ul>
+      <ul className={css.cartList}>
         <li>
           <div>
             <img src="/public/img/image1.jpg" alt="cart" />
