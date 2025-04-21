@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import css from './ShopPage.module.css';
 
 const ShopPage = () => {
+  const [isDown, setIsDown] = useState(false);
   return (
     <main className={css.shopPage}>
       <h2>ShopPage</h2>
@@ -14,8 +15,8 @@ const ShopPage = () => {
           <button>인기상품(top)</button>
         </div>
         {/* {정렬기능} */}
-        <div className={`css.sort ${css.active}`}>
-          <div className={css.sortHeader}>
+        <div className={`${css.sort} ${isDown ? css.active : ''}`}>
+          <div className={css.sortHeader} onClick={() => setIsDown(!isDown)}>
             <p>등록순</p>
             {/* 레이아웃 상황에 따라 화살표가 up/down 되는것을 구현 예정 */}
             <i className={`bi bi-chevron-down`}></i>
