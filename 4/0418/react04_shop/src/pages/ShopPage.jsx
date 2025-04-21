@@ -14,8 +14,12 @@ const ShopPage = () => {
           <button>인기상품(top)</button>
         </div>
         {/* {정렬기능} */}
-        <div className={css.sort}>
-          <div className={css.sortHeader}>등록순</div>
+        <div className={`css.sort ${css.active}`}>
+          <div className={css.sortHeader}>
+            <p>등록순</p>
+            {/* 레이아웃 상황에 따라 화살표가 up/down 되는것을 구현 예정 */}
+            <i className={`bi bi-chevron-down`}></i>
+          </div>
           <ul>
             <li>등록순</li>
             <li>낮은 가격순</li>

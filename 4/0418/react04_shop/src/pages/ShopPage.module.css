@@ -36,6 +36,41 @@
   color: var(--dark-colors-white-dark);
 }
 
+.sort {
+  margin: var(--fs33) 0;
+  font-size: var(--fs12);
+}
+
+.sortHeader {
+  background-color: var(--dark-colors-white-dark);
+  padding: var(--fs12);
+  border-radius: var(--fs8);
+  position: relative;
+}
+
+.sortHeader i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: var(--fs12);
+}
+
+.sort ul {
+  /* display: none; */
+  height: 0;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.sort.active .sortHeader i {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.sort.active ul {
+  height: auto;
+  transition: height 0.3s ease-in-out;
+}
+
 .productList {
   flex: 1;
 }
