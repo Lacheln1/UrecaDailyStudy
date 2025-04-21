@@ -1,19 +1,21 @@
 import React from 'react';
+import css from './ShopPage.module.css';
 
 const ShopPage = () => {
   return (
-    <main>
+    <main className={css.shopPage}>
       <h2>ShopPage</h2>
-      <div>
-        {/* 카테고리 선택 기능 new,top,기본  */}
-        <div>
-          <button>전체상품</button>
+
+      {/* 카테고리 선택 기능 new,top,기본  */}
+      <div className={css.searchFn}>
+        <div className={css.category}>
+          <button className={css.active}>전체상품</button>
           <button>신상품(new)</button>
           <button>인기상품(top)</button>
         </div>
         {/* {정렬기능} */}
-        <div>
-          <div>등록순</div>
+        <div className={css.sort}>
+          <div className={css.sortHeader}>등록순</div>
           <ul>
             <li>등록순</li>
             <li>낮은 가격순</li>
@@ -23,8 +25,8 @@ const ShopPage = () => {
           </ul>
         </div>
       </div>
-      <div>
-        <ul>
+      <div className={css.productList}>
+        <ul className={css.list}>
           <li>상품리스트</li>
         </ul>
       </div>
