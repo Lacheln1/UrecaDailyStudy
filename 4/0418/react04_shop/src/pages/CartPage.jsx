@@ -22,6 +22,8 @@ const CartPage = () => {
     setItems(prev =>
       prev.map(item => (item.id === id ? { ...item, count: item.count + 1 } : item))
     );
+
+    const newCount = items.find();
   };
 
   const decrease = id => {
