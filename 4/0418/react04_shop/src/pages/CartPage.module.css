@@ -12,12 +12,24 @@
   margin-bottom: var(--fs12);
   /* 옆으로 나열 */
   display: flex;
+  /* 안의 div요소들 수직 중앙 정렬 */
   align-items: center;
   justify-content: space-between;
+  gap: var(--fs12);
 }
 
 .cartItem > div {
   border: 1px solid green;
+}
+
+.title {
+  flex: 1;
+}
+
+.price,
+.sum {
+  width: 110px;
+  text-align: right;
 }
 
 img {
