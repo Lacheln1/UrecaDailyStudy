@@ -19,6 +19,10 @@ const CartPage = () => {
   );
 
   const increase = id => {
+    //아이템이 없으면 일찍 함수 종료
+    const currentItem = items.find(item => item.id === id);
+    if (!currentItem) return;
+
     // 해당 아이템만 수량이 늘어나야한다
     setItems(prev =>
       prev.map(item => (item.id === id ? { ...item, count: item.count + 1 } : item))
