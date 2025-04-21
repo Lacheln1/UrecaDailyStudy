@@ -19,7 +19,7 @@ const ShopPage = () => {
           <div className={css.sortHeader} onClick={() => setIsDown(!isDown)}>
             <p>등록순</p>
             {/* 레이아웃 상황에 따라 화살표가 up/down 되는것을 구현 예정 */}
-            <i className={`bi bi-chevron-down`}></i>
+            <i className={`bi bi-chevron-${isDown ? 'up' : 'down'}`}></i>
           </div>
           <ul>
             <li>등록순</li>
