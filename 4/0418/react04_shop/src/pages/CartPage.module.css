@@ -112,6 +112,16 @@
   }
 }
 
+.empty {
+  text-align: center;
+  padding: var(--fs33);
+}
+
+.totalPrice {
+  text-align: right;
+  font-size: var(--fs26);
+}
+
 @media (max-width: 500px) {
   .cartItem {
     display: flex;

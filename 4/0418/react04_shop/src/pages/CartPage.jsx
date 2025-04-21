@@ -60,7 +60,7 @@ const CartPage = () => {
       )}
 
       {items.length === 0 ? (
-        <p>장바구니 비었음</p>
+        <p className={css.empty}>장바구니 비었음</p>
       ) : (
         <>
           <ul className={css.cartList}>
