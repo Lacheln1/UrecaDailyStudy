@@ -23,7 +23,7 @@ const ShopPage = () => {
           </div>
           <ul>
             <li>등록순</li>
-            <li>낮은 가격순</li>
+            <li className={css.active}>낮은 가격순</li>
             <li>높은 가격순</li>
             <li>낮은 할인순</li>
             <li>높은 할인순</li>
@@ -33,7 +33,26 @@ const ShopPage = () => {
       <div className={css.productList}>
         <ul className={css.list}>
           <li>상품리스트</li>
+          <li>상품리스트</li>
+          <li>상품리스트</li>
+          <li>상품리스트</li>
+          <li>상품리스트</li>
+          <li>상품리스트</li>
+          <li>상품리스트</li>
         </ul>
+        <div className={css.paginationArea}>
+          <button>
+            <i className="bi bi-chevron-left"></i>
+          </button>
+          <button>1</button>
+          <button>2</button>
+          <button className={css.active}>3</button>
+          <button>4</button>
+          <button>5</button>
+          <button>
+            <i className="bi bi-chevron-right"></i>
+          </button>
+        </div>
       </div>
     </main>
   );

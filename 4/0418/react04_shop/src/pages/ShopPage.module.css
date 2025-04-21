@@ -57,18 +57,32 @@
 
 .sort ul {
   /* display: none; */
-  height: 0;
+  max-height: 0;
   overflow: hidden;
   transition: 0.3s;
+  border: 1px solid red;
+  background: var(--dark-colors-white-dark);
+  margin-top: var(--fs8);
 }
 
-.sort.active .sortHeader i {
-  transform: translateY(-50%) rotate(180deg);
+.sort > li {
+  border-bottom: 1px dotted var(--dark-colors-dark-gray-dark);
+  padding: var(--fs8) 0;
+  cursor: pointer;
 }
+
+.sort ul > li.active {
+  background-color: var(--dark-colors-light-gray-dark);
+  color: var(--dark-colors-white-dark);
+}
+
+/* .sort.active .sortHeader i {
+  transform: translateY(-50%) rotate(180deg);
+} */
 
 .sort.active ul {
-  height: auto;
-  transition: height 0.3s ease-in-out;
+  /* max height로 설정하여 크기 조절 */
+  max-height: 190px;
 }
 
 .productList {
