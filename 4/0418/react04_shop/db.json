@@ -185,15 +185,6 @@
       "category": "top",
       "discount": 5,
       "count": 0
-    },
-    {
-      "id": "15",
-      "title": "test5",
-      "img": "image5.jpg",
-      "price": 35000,
-      "category": "top",
-      "discount": 3,
-      "count": 0
     }
   ]
 }

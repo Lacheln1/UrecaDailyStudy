@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import css from './CartPage.module.css';
 import { formmatCurrency } from '@/utils/features';
-import { updateCartItem } from '@/api/cartApi';
+import { removeFromCart, updateCartItem } from '@/api/cartApi';
 const CartPage = () => {
   const cartList = useLoaderData();
   const [items, setItems] = useState(cartList);
@@ -37,37 +37,59 @@ const CartPage = () => {
     const newCount = items.find(item => item.id === id).count - 1;
     updateCartItem(id, newCount);
   };
+
+  const handleDelete = id => {
+    if (window.confirm('삭제하시겠습니까?')) {
+      setItems(prev => prev.filter(item => item.id !== id));
+      removeFromCart(id);
+    }
+  };
+
   return (
     <main>
       <h2>CartPage</h2>
-      <p>
-        장바구니에 <strong>{items.length}</strong>개가 담겨있으며, 총 상품 갯수는{' '}
-        <strong>{totalCount}</strong>개 입니다
-      </p>
-      <ul className={css.cartList}>
-        {items.map(item => (
-          <li className={css.cartItem} key={item.id}>
-            <div className={css.cartImg}>
-              <img src={`/public/img/${item.img}`} alt={item.title} />
-            </div>
-            <div className={css.title}>{item.title}</div>
-            <div className={css.price}>{formmatCurrency(item.price)}</div>
-            <div className={css.btnArea}>
-              <button onClick={() => decrease(item.id)}>-</button>
-              <span>{item.count}</span>
-              {/* 파라미터를 보내기때문에 실행문이어서 실행문일땐 콜백으로 넘겨줘야함 */}
-              <button onClick={() => increase(item.id)}>+</button>
-            </div>
-            <div className={css.sum}>{formmatCurrency(item.price * item.count)}</div>
-            <div className={css.deleteBtn}>
-              <i className="bi bi-trash3"></i>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <div className={css.totalPrice}>
-        총금액 : <strong>{formmatCurrency(totalSum)}</strong>
-      </div>
+      {items.length > 0 && (
+        <p>
+          장바구니에 <strong>{items.length}</strong>개가 담겨있으며, 총 상품 갯수는{' '}
+          <strong>{totalCount}</strong>개 입니다
+        </p>
+      )}
+
+      {items.length === 0 ? (
+        <p>장바구니 비었음</p>
+      ) : (
+        <>
+          <ul className={css.cartList}>
+            {items.map(item => (
+              <li className={css.cartItem} key={item.id}>
+                <div className={css.cartImg}>
+                  <img src={`/public/img/${item.img}`} alt={item.title} />
+                </div>
+                <div className={css.title}>{item.title}</div>
+                <div className={css.price}>{formmatCurrency(item.price)}</div>
+                <div className={css.btnArea}>
+                  <button onClick={() => decrease(item.id)}>-</button>
+                  <span>{item.count}</span>
+                  {/* 파라미터를 보내기때문에 실행문이어서 실행문일땐 콜백으로 넘겨줘야함 */}
+                  <button onClick={() => increase(item.id)}>+</button>
+                </div>
+                <div className={css.sum}>{formmatCurrency(item.price * item.count)}</div>
+                <div
+                  className={css.deleteBtn}
+                  onClick={() => {
+                    handleDelete(item.id);
+                  }}
+                >
+                  <i className="bi bi-trash3"></i>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className={css.totalPrice}>
+            총금액 : <strong>{formmatCurrency(totalSum)}</strong>
+          </div>
+        </>
+      )}
     </main>
   );
 };
