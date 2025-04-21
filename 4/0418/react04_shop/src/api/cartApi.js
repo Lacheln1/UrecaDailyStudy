@@ -40,7 +40,7 @@ export const updateCartItem = async (id, count) => {
   try {
     const cartItem = await axios.get(`/api/cart/${id}`);
     const updateItem = { ...cartItem.data, count };
-    const res = await axios.put(`api/cart${id}`, updateItem);
+    const res = await axios.put(`api/cart/${id}`, updateItem);
     return res.data;
   } catch (error) {
     console.log(error);

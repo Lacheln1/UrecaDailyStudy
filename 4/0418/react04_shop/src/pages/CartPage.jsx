@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import css from './CartPage.module.css';
 import { formmatCurrency } from '@/utils/features';
+import { updateCartItem } from '@/api/cartApi';
 const CartPage = () => {
   const cartList = useLoaderData();
   const [items, setItems] = useState(cartList);
@@ -23,7 +24,8 @@ const CartPage = () => {
       prev.map(item => (item.id === id ? { ...item, count: item.count + 1 } : item))
     );
 
-    const newCount = items.find();
+    const newCount = items.find(item => item.id === id).count + 1;
+    updateCartItem(id, newCount);
   };
 
   const decrease = id => {
@@ -32,6 +34,8 @@ const CartPage = () => {
         item.id === id && item.count > 1 ? { ...item, count: item.count - 1 } : item
       )
     );
+    const newCount = items.find(item => item.id === id).count - 1;
+    updateCartItem(id, newCount);
   };
   return (
     <main>
