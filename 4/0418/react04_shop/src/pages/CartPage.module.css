@@ -18,6 +18,13 @@
   gap: var(--fs12);
   border-radius: var(--fs12);
   padding: var(--fs12);
+  background-color: var(--dark-colors-white-dark);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.cartItem:hover {
+  transform: translateY(-5px);
 }
 
 .cartItem > div {
@@ -39,6 +46,11 @@
 
 .title {
   flex: 1;
+  cursor: pointer;
+}
+
+.title:hover {
+  font-weight: bold;
 }
 
 .price,
@@ -63,6 +75,7 @@
   /* span태그 고정 */
   display: inline-block;
   width: 50px;
+  text-align: center;
 }
 
 img {
@@ -71,8 +84,11 @@ img {
 
 .deleteBtn {
   padding: var(--fs12);
+  cursor: pointer;
 }
-
+.deleteBtn:hover {
+  color: var(--light-colors-errors-light);
+}
 @media (max-width: 900px) {
   .cartItem {
     display: grid;
@@ -99,6 +115,9 @@ img {
   /* order : 구조를 두고 몇번째로 구성하겠다  html 태그 */
   .btnArea {
     order: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .deleteBtn {
@@ -110,6 +129,7 @@ img {
   .cartItem {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: flex-start;
   }
 
