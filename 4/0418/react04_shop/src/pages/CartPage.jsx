@@ -33,6 +33,8 @@ const CartPage = () => {
   };
 
   const decrease = id => {
+    const cuurentItem = items.find(item => item.id === id);
+    if (!cuurentItem) return;
     setItems(prev =>
       prev.map(item =>
         item.id === id && item.count > 1 ? { ...item, count: item.count - 1 } : item

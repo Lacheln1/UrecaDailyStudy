@@ -5,6 +5,7 @@
   flex-direction: column;
   gap: var(--fs12);
   /*  */
+  margin: var(--fs33) auto;
 }
 
 .cartItem {
