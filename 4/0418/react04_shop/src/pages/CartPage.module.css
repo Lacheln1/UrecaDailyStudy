@@ -124,7 +124,7 @@
   }
   /* 삭제버튼을 수량 버튼 옆으로 보내기 위한 작업 */
   .cartItem > .btnArea {
-    width: calc(100%-80px);
+    width: calc(100% - 80px);
   }
 
   .cartItem > .deleteBtn {
