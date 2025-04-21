@@ -8,8 +8,6 @@
 }
 
 .cartItem {
-  border: 1px solid blue;
-  margin-bottom: var(--fs12);
   /* 옆으로 나열 */
   display: flex;
   /* 안의 div요소들 수직 중앙 정렬 */
@@ -25,10 +23,6 @@
 
 .cartItem:hover {
   transform: translateY(-5px);
-}
-
-.cartItem > div {
-  border: 1px solid green;
 }
 
 .cartImg {
@@ -75,18 +69,13 @@
   /* span태그 고정 */
   display: inline-block;
   width: 50px;
-  text-align: center;
-}
-
-img {
-  width: 100px;
 }
 
 .deleteBtn {
   padding: var(--fs12);
   cursor: pointer;
 }
-.deleteBtn:hover {
+.deleteBtn:hover i {
   color: var(--light-colors-errors-light);
 }
 @media (max-width: 900px) {
@@ -110,14 +99,12 @@ img {
   .price,
   .sum {
     grid-column: 2/4;
+    width: 100%;
   }
 
   /* order : 구조를 두고 몇번째로 구성하겠다  html 태그 */
   .btnArea {
     order: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 
   .deleteBtn {
@@ -128,7 +115,6 @@ img {
 @media (max-width: 500px) {
   .cartItem {
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
     align-items: flex-start;
   }
