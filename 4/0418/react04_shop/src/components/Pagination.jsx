@@ -55,11 +55,16 @@ const Pagination = ({ initProductsData }) => {
       >
         <i className="bi bi-chevron-left"></i>
       </button>
-      <button>1</button>
-      <button>2</button>
-      <button className={css.active}>3</button>
-      <button>4</button>
-      <button>5</button>
+      {pageNumbers.map(num => (
+        <button
+          key={num}
+          onClick={() => {
+            handlePageChange(num);
+          }}
+        >
+          {num}
+        </button>
+      ))}
       <button>
         <i className="bi bi-chevron-right"></i>
       </button>
