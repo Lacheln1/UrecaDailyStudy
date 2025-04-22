@@ -5,24 +5,15 @@ import ProductCard from '@/components/ProductCard';
 import Pagination from '@/components/Pagination';
 
 const ShopPage = () => {
-  const initProductsData = useLoaderData();
-  console.log('ShopPage.js:initProductsData', initProductsData);
-  const data = initProductsData.products.data;
-  console.log('ShopPage.js:data-----', data);
-
-  const { per_page } = initProductsData;
-
-  console.log('ShopPage.js:data', data);
-  console.log('ShopPage.js:per_page', per_page);
-
-  const [isDown, setIsDown] = useState(false);
-
   const navigate = useNavigate();
-
   const [searchParams] = useSearchParams();
-  // console.log('ShopPage.js:info ------', searchParams)
-
+  const [isDown, setIsDown] = useState(false);
+  const initProductsData = useLoaderData();
   const cuurentCategory = searchParams.get('category');
+  const sortCase = searchParams.get('_sort');
+
+  const data = initProductsData.products.data;
+  const { per_page } = initProductsData;
 
   const handleCategoryFilter = category => {
     const params = new URLSearchParams(searchParams); // 현재 파라미터 정보 유지
@@ -42,7 +33,6 @@ const ShopPage = () => {
     navigate(`/shop/?${params}`);
   };
 
-  const sortCase = searchParams.get('_sort');
   const sortTextMap = {
     id: '등록순',
     price: '낮은 가격순',
