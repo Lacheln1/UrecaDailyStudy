@@ -3,13 +3,14 @@ import css from './ShopPage.module.css';
 import { useLoaderData, useNavigate, useSearchParams } from 'react-router-dom';
 import ProductCard from '@/components/ProductCard';
 import Pagination from '@/components/Pagination';
+import CategoryButton from '@/components/CategoryButton';
 
 const ShopPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [isDown, setIsDown] = useState(false);
   const initProductsData = useLoaderData();
-  const cuurentCategory = searchParams.get('category');
+  const currentCategory = searchParams.get('category');
   const sortCase = searchParams.get('_sort');
 
   const data = initProductsData.products.data;
@@ -44,36 +45,34 @@ const ShopPage = () => {
     return sortTextMap[sortCase] || '등록순';
   };
 
+  const sortOptions = [
+    { option: 'id', label: '등록순' },
+    { option: 'price', label: '낮은 가격순' },
+    { option: '-price', label: '높은 가격순' },
+    { option: 'discount', label: '낮은 할인순' },
+    { option: '-discount', label: '높은 할인순' },
+  ];
+  const categories = [
+    { id: '', label: '전체상품' },
+    { id: 'new', label: '신상품(new)' },
+    { id: 'top', label: '인기상품(top)' },
+  ];
+
   return (
     <main className={css.shopPage}>
       {/* 카테고리 선택 기능 new,top,기본  */}
       <h2>Shop All</h2>
       <div className={css.searchFn}>
         <div className={css.category}>
-          <button
-            onClick={() => {
-              handleCategoryFilter('');
-            }}
-            className={cuurentCategory === null ? css.active : ''}
-          >
-            전체상품
-          </button>
-          <button
-            onClick={() => {
-              handleCategoryFilter('new');
-            }}
-            className={cuurentCategory === 'new' ? css.active : ''}
-          >
-            신상품(new)
-          </button>
-          <button
-            onClick={() => {
-              handleCategoryFilter('top');
-            }}
-            className={cuurentCategory === 'top' ? css.active : ''}
-          >
-            인기상품(top)
-          </button>
+          {categories.map(cate => (
+            <CategoryButton
+              key={cate.id}
+              cate={cate.id}
+              handleCategoryFilter={handleCategoryFilter}
+              currentCategory={currentCategory === null && cate.id === '' ? null : currentCategory}
+              label={cate.label}
+            />
+          ))}
         </div>
         {/* {정렬기능} */}
         <div className={`${css.sort} ${isDown ? css.active : ''}`}>
