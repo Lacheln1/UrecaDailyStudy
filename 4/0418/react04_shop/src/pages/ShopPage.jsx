@@ -4,6 +4,7 @@ import { useLoaderData, useNavigate, useSearchParams } from 'react-router-dom';
 import ProductCard from '@/components/ProductCard';
 import Pagination from '@/components/Pagination';
 import CategoryButton from '@/components/CategoryButton';
+import SortItem from '@/components/SortItem';
 
 const ShopPage = () => {
   const navigate = useNavigate();
@@ -82,46 +83,15 @@ const ShopPage = () => {
             <i className={`bi bi-chevron-${isDown ? 'up' : 'down'}`}></i>
           </div>
           <ul>
-            <li
-              onClick={() => {
-                handleSort('id');
-              }}
-              className={sortCase === 'id' ? css.active : ''}
-            >
-              등록순
-            </li>
-            <li
-              onClick={() => {
-                handleSort('price');
-              }}
-              className={sortCase === 'price' ? css.active : ''}
-            >
-              낮은 가격순
-            </li>
-            <li
-              onClick={() => {
-                handleSort('-price');
-              }}
-              className={sortCase === '-price' ? css.active : ''}
-            >
-              높은 가격순
-            </li>
-            <li
-              onClick={() => {
-                handleSort('discount');
-              }}
-              className={sortCase === 'discount' ? css.active : ''}
-            >
-              낮은 할인순
-            </li>
-            <li
-              onClick={() => {
-                handleSort('-discount');
-              }}
-              className={sortCase === '-discount' ? css.active : ''}
-            >
-              높은 할인순
-            </li>
+            {sortOptions.map(sortOpt => {
+              <SortItem
+                key={sortOpt.option}
+                option={sortOpt.option}
+                handleSort={handleSort}
+                currentSort={sortCase}
+                label={sortOpt.label}
+              />;
+            })}
           </ul>
         </div>
       </div>

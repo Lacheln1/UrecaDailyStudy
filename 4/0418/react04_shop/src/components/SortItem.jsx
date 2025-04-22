@@ -11,7 +11,9 @@ const SortItem = ({ option, handleSort, currentSort, label }) => {
         handleSort(option);
       }}
       className={isActive ? `${css.active} ${css.list}` : `${css.list}`}
-    ></li>
+    >
+      {label}
+    </li>
   );
 };
 
