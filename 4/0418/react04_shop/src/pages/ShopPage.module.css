@@ -83,11 +83,9 @@
 .list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: var(--f12);
+  gap: var(--fs26);
 }
 .list > li {
-  border: 1px solid red;
-  height: 300px;
 }
 
 .paginationArea {

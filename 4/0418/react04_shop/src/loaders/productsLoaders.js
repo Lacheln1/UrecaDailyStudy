@@ -32,8 +32,8 @@ export const detailPageLoader = async info => {
   }
 };
 
-export const shopPageLoader = async info => {
-  console.log('productLoader====', info);
+export const shopPageLoader = async ({ request }) => {
+  console.log('productLoader====', request.url);
 
   //_page=2&_per_page=2    :  데이터를 다 가져오지 않고 필요한 데이터만을 가져오기 위한 작업
 
@@ -42,5 +42,6 @@ export const shopPageLoader = async info => {
   let queryString = `_page=${page}&_per_page=${per_page}`;
 
   const products = await getProductsData(queryString);
-  return products;
+  //하나만 리턴하면 그냥 쭉 나오는데 두가지 이상을 return을 하면 console에서 per_page, products라는 key가 된다
+  return { products, per_page };
 };
