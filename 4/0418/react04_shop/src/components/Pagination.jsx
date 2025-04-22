@@ -10,7 +10,7 @@ const Pagination = ({ initProductsData }) => {
   const navigate = useNavigate();
   const { first, last, prev, nex, pages, items } = initProductsData.products;
 
-  const currentPage = searchParams.get('_page') || 1;
+  const currentPage = Number(searchParams.get('_page') || 1);
   console.log('currentPage == ', currentPage);
 
   const handlePageChange = page => {
@@ -65,7 +65,13 @@ const Pagination = ({ initProductsData }) => {
           {num}
         </button>
       ))}
-      <button>
+      <button
+        onClick={() => {
+          handlePageChange(next);
+        }}
+        disabled={next === null || currentPage === last}
+        className={currentPage === last ? css.disabled : ''}
+      >
         <i className="bi bi-chevron-right"></i>
       </button>
     </div>
