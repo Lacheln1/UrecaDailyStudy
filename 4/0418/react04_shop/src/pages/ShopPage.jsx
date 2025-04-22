@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import css from './ShopPage.module.css';
-import { data, useLoaderData, useNavigate } from 'react-router-dom';
+import { data, useLoaderData, useNavigate, useSearchParams } from 'react-router-dom';
 import ProductCard from '@/components/ProductCard';
 import Pagination from '@/components/Pagination';
 
@@ -14,7 +14,12 @@ const ShopPage = () => {
   console.log('per_page===', per_page);
 
   const navigate = useNavigate();
+
+  //배열로 정보 제공
+  const [searchParams] = useSearchParams();
+
   const handleCategoryFilter = category => {
+    const params = new URLSearchParams(searchParams);
     navigate(`/shop/?_page=1&_per_page=12&category=${category}`);
   };
   return (
