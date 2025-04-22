@@ -83,15 +83,15 @@ const ShopPage = () => {
             <i className={`bi bi-chevron-${isDown ? 'up' : 'down'}`}></i>
           </div>
           <ul>
-            {sortOptions.map(sortOpt => {
+            {sortOptions.map(sortOpt => (
               <SortItem
                 key={sortOpt.option}
                 option={sortOpt.option}
                 handleSort={handleSort}
                 currentSort={sortCase}
                 label={sortOpt.label}
-              />;
-            })}
+              />
+            ))}
           </ul>
         </div>
       </div>
