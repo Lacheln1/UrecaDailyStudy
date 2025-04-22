@@ -54,9 +54,9 @@ const ShopPage = () => {
       </div>
       <div className={css.productList}>
         <ul className={css.list}>
-          {data.map(product => (
+          {/* {data.map(product => (
             <ProductCard key={product.id} data={product} />
-          ))}
+          ))} */}
         </ul>
         <Pagination initProductsData={initProductsData} />
       </div>

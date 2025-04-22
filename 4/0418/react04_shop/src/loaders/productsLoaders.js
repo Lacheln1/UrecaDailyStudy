@@ -41,7 +41,7 @@ export const shopPageLoader = async ({ request }) => {
 
   //_page=2&_per_page=2    :  데이터를 다 가져오지 않고 필요한 데이터만을 가져오기 위한 작업
 
-  let queryString = `_page=${page}&_per_page=${per_page}`;
+  let queryString = `?_page=${page}&_per_page=${per_page}`;
   queryString ? (queryString += `&category=${category}`) : queryString;
 
   const products = await getProductsData(queryString);
