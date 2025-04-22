@@ -18,7 +18,7 @@ const Pagination = ({ initProductsData }) => {
   };
 
   //페이지 번호 계산 함수
-    //한번에 보여줄 최대 페이지 번호 수
+  //한번에 보여줄 최대 페이지 번호 수
   const getPageNumbers = () => {
     const maxPageNumbers = 10;
     if (pages <= maxPageNumbers) {
