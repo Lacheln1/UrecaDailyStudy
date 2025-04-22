@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
-import css from './Header.module.css'
-import Logo from '../components/Logo'
-import { throttle } from '@/utils/features'
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import css from './Header.module.css';
+import Logo from '../components/Logo';
+import { throttle } from '@/utils/features';
 
 const Header = () => {
-  const [isOn, setIsOn] = useState(false)
-  const location = useLocation()
+  const [isOn, setIsOn] = useState(false);
+  const location = useLocation();
 
   const addClassOn = () => {
-    setIsOn(!isOn)
-  }
+    setIsOn(!isOn);
+  };
 
   useEffect(() => {
-    setIsOn(false)
-  }, [location.pathname])
+    setIsOn(false);
+  }, [location.pathname]);
 
   const handleResize = throttle(() => {
     if (window.innerWidth > 1100) {
-      setIsOn(false)
+      setIsOn(false);
     }
-  }, 1000)
+  }, 1000);
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [handleResize])
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [handleResize]);
 
   return (
     <header className={css.hd}>
@@ -52,18 +52,18 @@ const Header = () => {
         <i className={`${css.ham} bi bi-list`} title="전체메뉴 보기버튼" onClick={addClassOn}></i>
       </div>
     </header>
-  )
-}
+  );
+};
 
 const CustomNavLink = ({ to, label }) => (
   <NavLink className={({ isActive }) => (isActive ? `${css.active}` : '')} to={to}>
     {label}
   </NavLink>
-)
+);
 const CustomIconLink = ({ to, icon }) => (
   <NavLink className={({ isActive }) => (isActive ? `${css.active}` : '')} to={to}>
     <i className={`bi ${icon}`}></i>
   </NavLink>
-)
+);
 
-export default Header
+export default Header;
