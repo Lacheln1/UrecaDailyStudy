@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import css from './ShopPage.module.css';
-import { data, useLoaderData } from 'react-router-dom';
+import { data, useLoaderData, useNavigate } from 'react-router-dom';
 import ProductCard from '@/components/ProductCard';
+import Pagination from '@/components/Pagination';
 
 const ShopPage = () => {
   const initProductsData = useLoaderData();
   const data = initProductsData.data;
+
   const [isDown, setIsDown] = useState(false);
+
   const per_page = initProductsData.per_page;
   console.log('per_page===', per_page);
+
+  const navigate = useNavigate();
+  const handleCategoryFilter = category => {
+    navigate(`/shop/?_page=1&_per_page=12&category=${category}`);
+  };
   return (
     <main className={css.shopPage}>
       <h2>ShopPage</h2>
@@ -42,6 +50,7 @@ const ShopPage = () => {
             <ProductCard key={product.id} data={product} />
           ))}
         </ul>
+        <Pagination initProductsData={initProductsData} />
       </div>
     </main>
   );

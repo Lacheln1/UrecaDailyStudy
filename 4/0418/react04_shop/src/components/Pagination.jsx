@@ -1,7 +1,8 @@
 import React from 'react';
 import css from './Pagination.module.css';
 
-const Pagination = ({ data }) => {
+const Pagination = ({ initProductsData }) => {
+  console.log('last', initProductsData.products.last);
   return (
     <div className={css.paginationArea}>
       <button>
