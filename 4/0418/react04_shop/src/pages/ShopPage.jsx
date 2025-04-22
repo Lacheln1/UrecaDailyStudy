@@ -19,8 +19,11 @@ const ShopPage = () => {
   const [searchParams] = useSearchParams();
 
   const handleCategoryFilter = category => {
-    const params = new URLSearchParams(searchParams);
-    navigate(`/shop/?_page=1&_per_page=12&category=${category}`);
+    const params = new URLSearchParams(searchParams); //현재 파라미터 정보 유지를 위해 넣음
+    params.set('_page', 1); // 카테고리를 옮겼을 때 페이지를 1로 초기화
+    params.set('_per_page', per_page); //페이지당 상품 수를 설정
+    category ? params.set('category', category) : params.delete('category'); // 카테고리
+    navigate(`/shop/${params}`);
   };
   return (
     <main className={css.shopPage}>
