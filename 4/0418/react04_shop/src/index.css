@@ -56,6 +56,29 @@ body {
   background-color: #eaeaea;
 }
 
+body.dark-mode {
+  background-color: var(--dark-colors-black-dark);
+  color: var(--dark-colors-white-dark);
+}
+
+body.dark-mode header {
+  background: transparent;
+}
+
+body.dark-mode path {
+  fill: var(--dark-colors-accent-dark);
+}
+
+@media (max-width: 110px) {
+  body.dark-mode nav {
+    color: var(--dark-colors-black-dark);
+  }
+
+  body.dark-mode nav + div {
+    color: var(--dark-colors-black-dark);
+  }
+}
+
 main,
 footer {
   max-width: 1200px;
