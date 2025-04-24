@@ -7,14 +7,17 @@ export const counterSlice = createSlice({
     label: '카운터',
   },
   reducers: {
-    increment: state => {
-      state.count += 1;
+    increment: (state, action) => {
+      state.count += action.payload || 1;
     },
 
     decrement: state => {
       state.count -= 1;
     },
+    countReset: state => {
+      state.count = 0;
+    },
   },
 });
 
-export const { increment, decrement } = counterSlice.actions;
+export const { increment, decrement, countReset } = counterSlice.actions;
