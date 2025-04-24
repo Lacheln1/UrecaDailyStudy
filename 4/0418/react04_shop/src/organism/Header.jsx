@@ -4,7 +4,8 @@ import css from './Header.module.css';
 import Logo from '../components/Logo';
 import { throttle } from '@/utils/features';
 import { isDate } from 'lodash';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTheme, toggleTheme } from '@/store/themeSlice';
 
 const Header = () => {
   const [isOn, setIsOn] = useState(false);
@@ -50,7 +51,27 @@ const Header = () => {
   // };
 
   const { isDarkMode } = useSelector(state => state.theme);
-  const handleThemeToggle = () => {};
+
+  const dispatch = useDispatch();
+
+  const handleThemeToggle = () => {
+    dispatch(toggleTheme());
+  };
+
+  useEffect(() => {
+    localStorage.setItem('theme', JSON.stringify(isDarkMode));
+    dispatch(setTheme(isDarkMode));
+  }, [isDarkMode, dispatch]);
+
+  //useEffect안하고 위 dispatch에 넣으면 눌렀을때 한박자 느리게 css가 적용된다
+  //새로고침 누르면 localstorage에 있던 값이 사라지는 것을 해결해야함
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [isDarkMode]);
 
   return (
     <header className={css.hd}>

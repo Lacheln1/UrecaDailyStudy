@@ -13,7 +13,10 @@ export const themeSlice = createSlice({
     toggleTheme: state => {
       state.isDarkMode = !state.isDarkMode;
     },
+    setTheme: (state, active) => {
+      state.isDarkMode = active.payload;
+    },
   },
 });
 
-export const { toggleTheme } = themeSlice.actions;
+export const { toggleTheme, setTheme } = themeSlice.actions;
