@@ -60,6 +60,7 @@ const Header = () => {
             <CustomNavLink to={'/shop'} label={'shop'} />
             <CustomNavLink to={'/about'} label={'about'} />
             <CustomNavLink to={'/blog'} label={'blog'} />
+            <CustomNavLink to={'/todos'} label={'todo'} />
           </nav>
           <div className={css.icon}>
             <CustomIconLink to={'/search'} icon={'bi-search'} />
