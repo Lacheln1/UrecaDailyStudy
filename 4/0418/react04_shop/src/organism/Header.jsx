@@ -32,22 +32,20 @@ const Header = () => {
 
   //다크모드 토글 구현하기
   const [isDarkMode, setIsDarkMode] = useState(false);
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme !== null) {
+      const parsedTheme = JSON.parse(savedTheme);
+      setIsDarkMode(parsedTheme);
+      document.body.classList.toggle('dark-mode', parsedTheme);
+    }
+  }, []);
+
   const handleThemeToggle = () => {
-    useEffect(() => {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme !== null) {
-        const parsedTheme = JSON.parse(savedTheme);
-        setIsDarkMode(parsedTheme);
-        //toggle클래스는 자바스크립트 기본 문법으로 두번째 매개변수에 따라 true or false 조작
-        document.body.classList.toggle('dark-mode', parsedTheme);
-      }
-    }, []);
-    const handleThemeToggle = () => {
-      const newTheme = !isDarkMode;
-      setIsDarkMode(newTheme);
-      //localstorage가져올땐 parse, set할땐 stringfy필수 : 문자열만 들어갈수있기때문
-      localStorage.setItem('theme', JSON.stringify(newTheme));
-    };
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    localStorage.setItem('theme', JSON.stringify(newTheme));
+    document.body.classList.toggle('dark-mode', newTheme);
   };
 
   return (
