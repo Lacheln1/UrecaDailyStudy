@@ -4,6 +4,7 @@ import css from './Header.module.css';
 import Logo from '../components/Logo';
 import { throttle } from '@/utils/features';
 import { isDate } from 'lodash';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
   const [isOn, setIsOn] = useState(false);
@@ -31,22 +32,25 @@ const Header = () => {
   }, [handleResize]);
 
   //다크모드 토글 구현하기
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme !== null) {
-      const parsedTheme = JSON.parse(savedTheme);
-      setIsDarkMode(parsedTheme);
-      document.body.classList.toggle('dark-mode', parsedTheme);
-    }
-  }, []);
+  // const [isDarkMode, setIsDarkMode] = useState(false);
+  // useEffect(() => {
+  //   const savedTheme = localStorage.getItem('theme');
+  //   if (savedTheme !== null) {
+  //     const parsedTheme = JSON.parse(savedTheme);
+  //     setIsDarkMode(parsedTheme);
+  //     document.body.classList.toggle('dark-mode', parsedTheme);
+  //   }
+  // }, []);
 
-  const handleThemeToggle = () => {
-    const newTheme = !isDarkMode;
-    setIsDarkMode(newTheme);
-    localStorage.setItem('theme', JSON.stringify(newTheme));
-    document.body.classList.toggle('dark-mode', newTheme);
-  };
+  // const handleThemeToggle = () => {
+  //   const newTheme = !isDarkMode;
+  //   setIsDarkMode(newTheme);
+  //   localStorage.setItem('theme', JSON.stringify(newTheme));
+  //   document.body.classList.toggle('dark-mode', newTheme);
+  // };
+
+  const { isDarkMode } = useSelector(state => state.theme);
+  const handleThemeToggle = () => {};
 
   return (
     <header className={css.hd}>
