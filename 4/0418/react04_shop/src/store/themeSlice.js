@@ -7,14 +7,11 @@ export const themeSlice = createSlice({
   name: 'theme',
   initialState: {
     //이 정보는 localStorage에서 가져와야 함
-    isDarkMode: false,
+    isDarkMode,
   },
   reducers: {
     toggleTheme: state => {
       state.isDarkMode = !state.isDarkMode;
-    },
-    setTheme: (state, active) => {
-      state.isDarkMode = active.payload;
     },
   },
 });
