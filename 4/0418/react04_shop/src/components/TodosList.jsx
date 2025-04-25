@@ -1,4 +1,4 @@
-import { fetchTodos } from '@/store/todosSlice';
+import { fetchTodos } from '@/store/todoSlice';
 import React, { useEffect } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useDispatch, useSelector } from 'react-redux';
