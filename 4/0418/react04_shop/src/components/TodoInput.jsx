@@ -5,8 +5,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 const TodoInput = () => {
   return (
     <InputGroup className="mt-5 mb-5">
-      <Form.Control as="textarea" aria-label="First name" />
-      <Button variant="outline-secondary">할일등록ㄱ</Button>
+      <Form.Control as="textarea" aria-label="With textarea" />
+      <Button variant="outline-secondary">할일등록</Button>
     </InputGroup>
   );
 };
