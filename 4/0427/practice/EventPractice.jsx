@@ -3,6 +3,15 @@ import React, { useState } from "react";
 const EventPractice = () => {
   const [message, setMessage] = useState("");
 
+  const handleChange = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const clickEvent = () => {
+    alert(message);
+    setMessage("");
+  };
+
   return (
     <div>
       <h1>이벤트 연습</h1>
@@ -11,17 +20,10 @@ const EventPractice = () => {
         name="message"
         placeholder="아무거나 입력"
         value={message}
-        onChange={(e) => setMessage(e.target.value)}
+        onChange={handleChange}
       />
 
-      <button
-        onClick={() => {
-          alert(message);
-          setMessage("");
-        }}
-      >
-        확인하기
-      </button>
+      <button onClick={clickEvent}>확인하기</button>
     </div>
   );
 };
