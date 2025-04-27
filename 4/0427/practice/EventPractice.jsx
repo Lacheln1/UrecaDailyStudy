@@ -18,6 +18,12 @@ const EventPractice = () => {
     setName("");
   };
 
+  const pressEvent = (e) => {
+    if (e.key === "Enter") {
+      clickEvent();
+    }
+  };
+
   return (
     <div>
       <h1>이벤트 연습</h1>
@@ -34,6 +40,7 @@ const EventPractice = () => {
         placeholder="사용자명"
         value={name}
         onChange={handleNameChange}
+        onKeyDown={pressEvent}
       />
       <button onClick={clickEvent}>확인하기</button>
     </div>
