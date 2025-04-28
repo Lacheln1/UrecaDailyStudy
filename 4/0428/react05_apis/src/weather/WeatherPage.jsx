@@ -4,7 +4,15 @@ import { getCurrentData } from "./useWeatherApi";
 
 const WeatherPage = () => {
   useEffect(() => {
-    getCurrentData();
+    const fetchWeatherData = async () => {
+      try {
+        const data = await getCurrentData();
+        console.log("날씨 데이터", data);
+      } catch (error) {
+        console.error("날씨 데이터 가져오기 실패", error);
+      }
+    };
+    fetchWeatherData();
   }, []);
   return (
     <main className={css.main}>
