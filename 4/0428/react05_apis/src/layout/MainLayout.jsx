@@ -1,9 +1,12 @@
 import React from "react";
+import MenuList from "./MenuList";
+import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   return (
     <>
-      <main>컨텐츠 들어가는 곳</main>
+      <MenuList />
+      <Outlet />
     </>
   );
 };
