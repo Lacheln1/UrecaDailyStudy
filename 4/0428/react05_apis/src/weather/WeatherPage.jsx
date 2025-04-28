@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import css from "./WeatherPage.module.css";
-import { getCurrentData } from "./useWeatherApi";
+import { getCountryData, getCurrentData } from "./useWeatherApi";
 import { useSearchParams } from "react-router-dom";
 import Button from "./Button";
 
@@ -17,15 +17,20 @@ const WeatherPage = () => {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const data = await getCurrentData();
-        console.log("날씨 데이터", data);
+        let data;
+        if (city) {
+          data = await getCountryData(city);
+        } else {
+          data = await getCurrentData();
+        }
+        console.log("날씨 데이터----", data);
         setWeatherData(data);
       } catch (error) {
         console.error("날씨 데이터 가져오기 실패", error);
       }
     };
     fetchWeatherData();
-  }, []);
+  }, [city]);
 
   const handleChangeCity = (city) => {
     console.log("버튼클릭", city);
