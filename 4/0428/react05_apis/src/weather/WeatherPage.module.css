@@ -20,6 +20,10 @@
   font-size: 2rem;
 }
 .temperature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1;
   font-size: 1.5rem;
 }
 .btnList {

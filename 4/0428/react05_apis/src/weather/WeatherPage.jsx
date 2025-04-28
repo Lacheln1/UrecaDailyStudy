@@ -22,10 +22,11 @@ const WeatherPage = () => {
       <h2>weatherPage</h2>
       <div className={css.weatherInfo}>
         <p className={css.location}>
+          {/* ?붙이는 이유는 데이터를 가져올때까지 기다리는정도로 알아두면됨  */}
           {weatherData?.sys.country} / {weatherData?.name}{" "}
         </p>
-        <p className={css.temperature}>
-          {weatherData?.main.temp} &#8451; / /{" "}
+        <p className={css.temperature}>{weatherData?.main.temp} &#8451;</p>
+        <p>
           <img
             src={`http://openweathermap.org/img/wn/${weatherData?.weather[0].icon}.png`}
             alt=""
