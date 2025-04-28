@@ -25,8 +25,11 @@ const WeatherPage = () => {
           {weatherData?.sys.country} / {weatherData?.name}{" "}
         </p>
         <p className={css.temperature}>
-          {weatherData?.main.temp} &#8451; /{" "}
-          {weatherData?.weather[0].description}
+          {weatherData?.main.temp} &#8451; / /{" "}
+          <img
+            src={`http://openweathermap.org/img/wn/${weatherData?.weather[0].icon}.png`}
+            alt=""
+          />
         </p>
       </div>
       <div className={css.btnList}>
