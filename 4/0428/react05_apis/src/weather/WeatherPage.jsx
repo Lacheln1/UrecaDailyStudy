@@ -4,6 +4,12 @@ import { getCurrentData } from "./useWeatherApi";
 
 const WeatherPage = () => {
   const [weatherData, setWeatherData] = useState(null);
+  const cityButtons = [
+    { id: "현재위치", label: "현재위치" },
+    { id: "seoul", label: "서울" },
+    { id: "japan", label: "일본" },
+    { id: "paris", label: "파리" },
+  ];
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
