@@ -21,9 +21,21 @@ export const getWeatherByCurrentLocation = async (lat, lon) => {
 //현재 좌표 가져오기
 //getWeatherByCurrentLocation(위도,경도) 할 예정
 export const getCurrentData = async () => {
-  const res = await axios.get(
-    `${BASE_URL}?lat=44&lon=10&appid=${API_KEY}&lang=kr&units=metric`
-  );
-  console.log(res.data);
-  return res.data;
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          const { latitude, longitude } = position.coords;
+          const res = await getWeatherByCurrentLocation(latitude, longitude);
+          resolve(res);
+        } catch (error) {
+          console.log("좌표로 날씨정보 가져오기 실패", error);
+        }
+      },
+      (err) => {
+        console.log("좌표가져오기실패", err);
+        reject(err);
+      }
+    );
+  });
 };
