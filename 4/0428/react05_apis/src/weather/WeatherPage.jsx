@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import css from "./WeatherPage.module.css";
 import { getCurrentData } from "./useWeatherApi";
+import { useSearchParams } from "react-router-dom";
 
 const WeatherPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const city = searchParams.get("city"); //버튼을 눌렀을때 city를 변경
   const [weatherData, setWeatherData] = useState(null);
   const cityButtons = [
     { id: "현재위치", label: "현재위치" },
