@@ -3,7 +3,7 @@ import css from "./WeatherPage.module.css";
 
 const WeatherPage = () => {
   return (
-    <main>
+    <main className={css.main}>
       <h2>weatherPage</h2>
       <div className={css.weatherInfo}>
         <p className={css.location}>국가 / 도시 </p>
