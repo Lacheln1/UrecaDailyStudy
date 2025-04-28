@@ -40,10 +40,9 @@ const WeatherPage = () => {
         </p>
       </div>
       <div className={css.btnList}>
-        <button>리스트</button>
-        <button>리스트</button>
-        <button>리스트</button>
-        <button>리스트</button>
+        {cityButtons.map((button) => (
+          <button>{button.label}</button>
+        ))}
       </div>
     </main>
   );

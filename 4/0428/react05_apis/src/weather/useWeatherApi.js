@@ -39,3 +39,15 @@ export const getCurrentData = async () => {
     );
   });
 };
+
+//도시명으로 날씨정보 가져오기
+export const getCountryData = async (city) => {
+  try {
+    const res = await axios.get(
+      `${BASE_URL}?q=${city}&appid=${API_KEY}&lang=kr&units=metric`
+    );
+    return res.data;
+  } catch (error) {
+    console.log("좌표로 날씨정보 가져오기 실패", error);
+  }
+};
