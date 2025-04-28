@@ -19,7 +19,7 @@ export const getWeatherByCurrentLocation = async (lat, lon) => {
 
 //현재 위치 날씨 정보 가져오기
 //현재 좌표 가져오기
-//getWeatherByCurrentLocation(위도,경도)
+//getWeatherByCurrentLocation(위도,경도) 할 예정
 export const getCurrentData = async () => {
   const res = await axios.get(
     `${BASE_URL}?lat=44&lon=10&appid=${API_KEY}&lang=kr&units=metric`
