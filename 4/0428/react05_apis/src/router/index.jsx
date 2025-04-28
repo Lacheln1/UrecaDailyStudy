@@ -13,10 +13,6 @@ export const router = createBrowserRouter([
         index: true,
         element: <WeatherPage />,
       },
-      {
-        path: "/weather",
-        element: <WeatherPage />,
-      },
     ],
   },
 ]);
