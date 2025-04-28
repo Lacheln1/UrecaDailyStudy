@@ -40,10 +40,13 @@ img {
 #root > ul {
   width: 200px;
   background-color: #dfdede;
+  /* 범위 아래로 쭉 */
   height: calc(100vh - 2rem);
 }
 
 #root > main {
   background-color: #f0f0f0;
+
+  /* 범위 가로로 쭉 */
   flex: 1;
 }
