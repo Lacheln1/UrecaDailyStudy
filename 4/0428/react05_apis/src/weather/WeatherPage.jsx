@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import css from "./WeatherPage.module.css";
+import { getCurrentData } from "./useWeatherApi";
 
 const WeatherPage = () => {
+  useEffect(() => {
+    getCurrentData();
+  }, []);
   return (
     <main className={css.main}>
       <h2>weatherPage</h2>
