@@ -27,7 +27,14 @@ const WeatherPage = () => {
     fetchWeatherData();
   }, []);
 
-  const handleChangeCity = () => {};
+  const handleChangeCity = (city) => {
+    console.log("버튼클릭", city);
+    if (city === "current") {
+      setSearchParams({});
+    } else {
+      setSearchParams({ city });
+    }
+  };
 
   console.log("날시데이터", weatherData?.cod);
   return (
