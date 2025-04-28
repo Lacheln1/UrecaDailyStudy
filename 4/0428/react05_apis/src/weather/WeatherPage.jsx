@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import css from "./WeatherPage.module.css";
 import { getCurrentData } from "./useWeatherApi";
 import { useSearchParams } from "react-router-dom";
+import Button from "./Button";
 
 const WeatherPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -25,6 +26,9 @@ const WeatherPage = () => {
     };
     fetchWeatherData();
   }, []);
+
+  const handleChangeCity = () => {};
+
   console.log("날시데이터", weatherData?.cod);
   return (
     <main className={css.main}>
@@ -44,7 +48,12 @@ const WeatherPage = () => {
       </div>
       <div className={css.btnList}>
         {cityButtons.map((button) => (
-          <button>{button.label}</button>
+          <Button
+            key={button.id}
+            city={button.id}
+            label={button.label}
+            onClick={handleChangeCity}
+          />
         ))}
       </div>
     </main>
