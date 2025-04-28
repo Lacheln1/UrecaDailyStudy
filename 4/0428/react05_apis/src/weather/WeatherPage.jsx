@@ -9,7 +9,7 @@ const WeatherPage = () => {
   const city = searchParams.get("city"); //버튼을 눌렀을때 city를 변경
   const [weatherData, setWeatherData] = useState(null);
   const cityButtons = [
-    { id: "현재위치", label: "현재위치" },
+    { id: "current", label: "현재위치" },
     { id: "seoul", label: "서울" },
     { id: "japan", label: "일본" },
     { id: "paris", label: "파리" },
@@ -48,7 +48,7 @@ const WeatherPage = () => {
       <div className={css.weatherInfo}>
         <p className={css.location}>
           {/* ?붙이는 이유는 데이터를 가져올때까지 기다리는정도로 알아두면됨  */}
-          {weatherData?.sys.country} / {weatherData?.name}{" "}
+          {weatherData?.sys.country} / {weatherData?.name}
         </p>
         <p className={css.temperature}>{weatherData?.main.temp} &#8451;</p>
         <p>
