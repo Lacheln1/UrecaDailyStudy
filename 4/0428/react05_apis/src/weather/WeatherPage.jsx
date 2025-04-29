@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import css from "./WeatherPage.module.css";
-import { getCountryData, getCurrentData } from "./useWeatherApi";
+import { getCountryData, getCurrentData, useWeather } from "./useWeatherApi";
 import { useSearchParams } from "react-router-dom";
 import Button from "./Button";
 
@@ -14,6 +14,10 @@ const WeatherPage = () => {
     { id: "japan", label: "일본" },
     { id: "paris", label: "파리" },
   ];
+
+  const res = useWeather(city);
+  console.log("res-----------", res.data);
+
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
