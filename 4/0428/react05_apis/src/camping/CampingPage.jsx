@@ -16,7 +16,6 @@ const CampingPage = () => {
   console.log("캠핑데이터=====", data?.data);
   const handleCampingClick = (list) => {
     setIsModalOpen(true);
-
     setSelected(list);
   };
 
