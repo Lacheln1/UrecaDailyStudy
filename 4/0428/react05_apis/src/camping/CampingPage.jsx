@@ -2,18 +2,22 @@ import React, { useState } from "react";
 import { useCamping } from "./useCamping";
 import css from "./CampingPage.module.css";
 import DetailModal from "./DetailModal";
+import Pagination from "./Pagination";
 
 const CampingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   //선택된 캠핑 정보들을 모달에다가 전달해주기 위함
   const [selected, setSelected] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const { data, isError, isLoading } = useCamping(1, 10);
+  //1대신에 페이지 넘길때마다 버튼올라가면서 하기?
+  const { data, isError, isLoading } = useCamping(currentPage, 10);
   const campingData = data?.data;
   const totalCount = campingData?.totalCount;
   const page = campingData?.page;
   const perPage = campingData?.perPage;
-  console.log("캠핑데이터=====", data?.data);
+  console.log("캠핑page=====", data?.data);
+
   const handleCampingClick = (list) => {
     setIsModalOpen(true);
     setSelected(list);
@@ -40,6 +44,7 @@ const CampingPage = () => {
         </ul>
       </div>
       {isModalOpen && <DetailModal selected={selected} />}
+      <Pagination data={data} />
     </main>
   );
 };

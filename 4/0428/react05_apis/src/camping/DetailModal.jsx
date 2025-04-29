@@ -5,7 +5,6 @@ const DetailModal = ({ selected }) => {
   const [isModalClose, setIsModalClose] = useState(false);
   const closeModal = () => {
     setIsModalClose(true);
-    console.log("클릭됨");
   };
 
   useEffect(() => {
