@@ -7,7 +7,7 @@ import Button from "./Button";
 const WeatherPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const city = searchParams.get("city"); //버튼을 눌렀을때 city를 변경
-  const [weatherData, setWeatherData] = useState(null);
+
   const cityButtons = [
     { id: "current", label: "현재위치" },
     { id: "seoul", label: "서울" },
@@ -15,26 +15,7 @@ const WeatherPage = () => {
     { id: "paris", label: "파리" },
   ];
 
-  const res = useWeather(city);
-  console.log("res-----------", res.data);
-
-  useEffect(() => {
-    const fetchWeatherData = async () => {
-      try {
-        let data;
-        if (city) {
-          data = await getCountryData(city);
-        } else {
-          data = await getCurrentData();
-        }
-        console.log("날씨 데이터----", data);
-        setWeatherData(data);
-      } catch (error) {
-        console.error("날씨 데이터 가져오기 실패", error);
-      }
-    };
-    fetchWeatherData();
-  }, [city]);
+  const { data: weatherData, isLoading, isError } = useWeather(city);
 
   const handleChangeCity = (city) => {
     console.log("버튼클릭", city);
@@ -45,7 +26,8 @@ const WeatherPage = () => {
     }
   };
 
-  console.log("날시데이터", weatherData?.cod);
+  isLoading && <p>로딩중..</p>;
+  isError && <p>에러</p>;
   return (
     <main className={css.main}>
       <h2>weatherPage</h2>
