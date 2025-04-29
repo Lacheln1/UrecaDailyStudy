@@ -1,6 +1,7 @@
 import React from "react";
 import { useCamping } from "./useCamping";
 import css from "./CampingPage.module.css";
+import DetailModal from "./DetailModal";
 
 const CampingPage = () => {
   const { data, isError, isLoading } = useCamping(1, 10);
@@ -28,6 +29,7 @@ const CampingPage = () => {
           ))}
         </ul>
       </div>
+      <DetailModal />
     </main>
   );
 };

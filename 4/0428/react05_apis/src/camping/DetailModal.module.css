@@ -6,4 +6,13 @@
 
   /* 구별이 안될수 있으니 */
   backdrop-filter: blur(5px);
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: white;
 }
