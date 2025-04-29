@@ -1,6 +1,13 @@
 import React from "react";
+import { useCamping } from "./useCamping";
 
 const CampingPage = () => {
+  const { data, isError, isLoading } = useCamping(1, 10);
+  const campingData = data?.data;
+  const totalCount = campingData?.totalCount;
+  const page = campingData?.page;
+  const perPage = campingData?.perPage;
+  console.log("캠핑데이터=====", data);
   return (
     <main>
       <h2>캠핑페이지</h2>
