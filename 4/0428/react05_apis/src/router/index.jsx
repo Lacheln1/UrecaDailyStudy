@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import WeatherPage from "../weather/WeatherPage";
 import MainLayout from "../layout/MainLayout";
+import CampingPage from "../camping/CampingPage";
 
 export const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <WeatherPage />,
+      },
+      {
+        path: "/camping",
+        element: <CampingPage />,
       },
     ],
   },
