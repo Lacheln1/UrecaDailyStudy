@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCamping } from "./useCamping";
 import css from "./CampingPage.module.css";
 import DetailModal from "./DetailModal";
 
 const CampingPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { data, isError, isLoading } = useCamping(1, 10);
   const campingData = data?.data;
   const totalCount = campingData?.totalCount;
   const page = campingData?.page;
   const perPage = campingData?.perPage;
   console.log("캠핑데이터=====", data?.data);
-  const handleCampingClick = (e) => {};
+  const handleCampingClick = () => {
+    setIsModalOpen(true);
+  };
 
   isLoading && <p>로딩중..</p>;
   isError && <p>에러</p>;
@@ -22,14 +25,14 @@ const CampingPage = () => {
         <ul className={css.list}>
           {campingData?.map((list, i) => (
             //id가 따로 없고 한글명으로 구별해야할땐 . 으로 접근 못함 , i해준 이유는 야영장명이 같은곳이 있을 수 있으니까
-            <li key={list["야영장명"] + i}>
+            <li key={list["야영장명"] + i} onClick={handleCampingClick}>
               <p>야영장명 : {list["야영장명"]}</p>
               <p>주소 : {list["주소"]}</p>
             </li>
           ))}
         </ul>
       </div>
-      <DetailModal />
+      {isModalOpen && <DetailModal />}
     </main>
   );
 };
