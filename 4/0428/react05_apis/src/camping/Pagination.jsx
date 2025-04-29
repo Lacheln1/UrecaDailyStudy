@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
-
+import css from "./Pagination.module.css";
 const Pagination = ({ data }) => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const Pagination = ({ data }) => {
   if (totalPages <= 1) return null;
 
   return (
-    <div>
+    <div className={css.buttonCon}>
       <button
         onClick={() => handlePageChange(currnetPage - 1)}
         disabled={currnetPage === 1}
@@ -40,7 +40,11 @@ const Pagination = ({ data }) => {
         이전
       </button>
       {getPageNumber().map((pageNum) => (
-        <button key={pageNum} onClick={() => handlePageChange(pageNum)}>
+        <button
+          key={pageNum}
+          onClick={() => handlePageChange(pageNum)}
+          className={pageNum === currnetPage ? `${css.active}` : ""}
+        >
           {pageNum}
         </button>
       ))}
