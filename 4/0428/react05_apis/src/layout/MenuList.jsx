@@ -6,15 +6,22 @@ const MenuList = () => {
   return (
     <ul>
       <li>
-        <NavLink
-          to={"/"}
-          className={(isActive) => (isActive ? `${css.active}` : "")}
-        >
-          날씨 api활용
-        </NavLink>
+        <CustomNavLink to={"/"} label={"날씨 api 활용"} />
+        <CustomNavLink to={"/camping"} label={"캠핑장 api 활용"} />
       </li>
     </ul>
   );
 };
+
+const CustomNavLink = ({ to, label }) => (
+  <li>
+    <NavLink
+      to={to}
+      className={({ isActive }) => (isActive ? `${css.active}` : "")}
+    >
+      {label}
+    </NavLink>
+  </li>
+);
 
 export default MenuList;
