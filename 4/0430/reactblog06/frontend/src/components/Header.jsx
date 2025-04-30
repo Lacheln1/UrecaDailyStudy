@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import css from "./Header/module.css";
+import css from "./Header.module.css";
 const Header = () => {
   return (
-    <head>
+    <header>
       <h1>
         <Link to={"/"}>로고</Link>
       </h1>
@@ -13,7 +13,7 @@ const Header = () => {
           className={({ isActive }) => (isActive ? css.active : "")}
         ></NavLink>
       </nav>
-    </head>
+    </header>
   );
 };
 
