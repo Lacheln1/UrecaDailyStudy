@@ -9,7 +9,33 @@ const RegisterPage = () => {
   // 패스워드 확인
   const [errorPassWordOk, setErrorPassWordOk] = useState("");
 
-  const handleUserNameChange = (e) => {};
+  //유효성 검사
+  const validdateUsername = (value) => {
+    if (!value) {
+      setErrorUserName("");
+      return;
+    }
+
+    if (!/^[a-zA-Z][a-zA-Z0-9]{3,}$/.test(value)) {
+      setErrorUserName(
+        "사용자명은 영문자로 시작하는 4자 이상의 영문자 또는 숫자여야 합니다"
+      );
+    } else {
+      setErrorUserName("");
+    }
+  };
+
+  const validatePassword = (value) => {};
+  const handleUserNameChange = (e) => {
+    const value = e.target.value;
+    setUserName(value);
+    validdateUsername(value);
+  };
+  const handleUserPassWordChange = (e) => {
+    const value = e.target.value;
+    setPassWord(value);
+    validatePassword(value);
+  };
   return (
     <main className={css.registerpage}>
       <h2>회원가입 페이지</h2>
@@ -21,7 +47,12 @@ const RegisterPage = () => {
           onChange={handleUserNameChange}
         />
         <strong>{errorUserName}</strong>
-        <input type="password" placeholder="패스워드" value={passWord} />
+        <input
+          type="password"
+          placeholder="패스워드"
+          value={passWord}
+          onChange={handleUserPassWordChange}
+        />
         <strong>{errorPassWord}</strong>
         <input type="password" placeholder="패스워드 확인" value={passWordOk} />
         <strong>{errorPassWordOk}</strong>
