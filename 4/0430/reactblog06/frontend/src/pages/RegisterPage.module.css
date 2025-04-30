@@ -1,0 +1,13 @@
+.container {
+  width: 60%;
+  /* 중앙정렬 */
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.container input {
+  padding: 1em;
+}
