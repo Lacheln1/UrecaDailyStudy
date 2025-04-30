@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import css from "./RegisterPage.module.css";
+import axios from "axios";
 const RegisterPage = () => {
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
@@ -69,7 +70,7 @@ const RegisterPage = () => {
   };
 
   //폼 제출전 폼값이 변경됐을수도있으니 한번 더 유효성 검사
-  const register = (e) => {
+  const register = async (e) => {
     e.preventDefault();
     console.log("회원가입", userName, passWord, passWordOk);
     validdateUsername(userName);
@@ -90,6 +91,7 @@ const RegisterPage = () => {
     //회원가입 api 호출
     try {
       setRegisterState("등록중");
+      const response = await axios.post("http://localhost:3000/register");
     } catch (error) {
       console.log("회원가입 실패", error);
     }
