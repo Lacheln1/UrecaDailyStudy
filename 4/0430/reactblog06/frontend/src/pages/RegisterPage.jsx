@@ -96,7 +96,7 @@ const RegisterPage = () => {
         passWord,
       });
 
-      console.log("회원가입성공", response);
+      console.log("회원가입성공", response.data);
     } catch (error) {
       console.log("회원가입 실패", error);
     }
