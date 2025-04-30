@@ -91,7 +91,12 @@ const RegisterPage = () => {
     //회원가입 api 호출
     try {
       setRegisterState("등록중");
-      const response = await axios.post("http://localhost:3000/register");
+      const response = await axios.post("http://localhost:3000/register", {
+        userName,
+        passWord,
+      });
+
+      console.log("회원가입성공", response);
     } catch (error) {
       console.log("회원가입 실패", error);
     }
