@@ -5,9 +5,32 @@
 
   display: flex;
   flex-direction: column;
-  gap: 0.25em;
+  gap: 0.5em;
 }
 
 .container input {
   padding: 1em;
+  border-radius: 0.25em;
+  border: 1px solid lightblue;
+  outline: none;
+}
+
+.container input:focus {
+  background-color: lightblue;
+}
+
+.container strong {
+  color: red;
+  font-weight: normal;
+  font-size: 0.75em;
+  padding: 1em;
+}
+
+.container button {
+  padding: 1em;
+  background-color: lightskyblue;
+  border-radius: 1em;
+
+  /* 버튼 혼자 작게 */
+  align-self: center;
 }
