@@ -8,11 +8,18 @@ const RegisterPage = () => {
   const [errorPassWord, setErrorPassWord] = useState("");
   // 패스워드 확인
   const [errorPassWordOk, setErrorPassWordOk] = useState("");
+
+  const handleUserNameChange = (e) => {};
   return (
     <main className={css.registerpage}>
       <h2>회원가입 페이지</h2>
       <form className={css.container}>
-        <input type="text" placeholder="사용자명" value={userName} />
+        <input
+          type="text"
+          placeholder="사용자명"
+          value={userName}
+          onChange={handleUserNameChange}
+        />
         <strong>{errorUserName}</strong>
         <input type="password" placeholder="패스워드" value={passWord} />
         <strong>{errorPassWord}</strong>
