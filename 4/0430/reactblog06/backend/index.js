@@ -80,10 +80,13 @@ app.post("/login", async (req, res) => {
       res
         .cookie("token", token, {
           httpOnly: true, //js에서 접근 불가
-          secure: process.env.NODE_ENV === "production", // https사용 시 true로 설정
+          // secure: process.env.NODE_ENV === "production", // https사용 시 true로 설정
           sameSite: "strict", //csrf공격방지
         })
-        .json();
+        .json({
+          id: userDOC._id,
+          userName,
+        });
     }
   } catch (error) {
     console.log("비밀번호확인함수에서일어난에러", error);
