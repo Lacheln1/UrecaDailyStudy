@@ -60,13 +60,14 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   try {
     const { userName, passWord } = req.body;
-    const userDOC = await userModel({ userName });
+    const userDOC = await userModel.findOne({ userName });
     if (!userDOC) {
       return res.status(401).json({ error: "없는 사용자 입니다" });
     }
 
     //비밀번호 확인(암호해독)
-    const passOk = bcrypt.compareSync(passWord, userDOC, passWord);
+    const passOk = bcrypt.compareSync(passWord, userDOC.passWord);
+
     if (!passOk) {
       return res.status(401).json({ error: "비밀번호가 틀렸습니다" });
     } else {

@@ -59,10 +59,12 @@ const LoginPage = () => {
       return;
     }
 
-    const response = await axios.get(`http://localhost:3000/login`, {
+    const response = await axios.post(`http://localhost:3000/login`, {
       userName,
       passWord,
     });
+
+    console.log(response);
     if (response.status === 200) {
       setLoginStatus("로그인성공");
       setRedirect(true);
