@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import css from "./RegisterPage.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const RegisterPage = () => {
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
@@ -10,6 +11,8 @@ const RegisterPage = () => {
   // 패스워드 확인
   const [errorPassWordOk, setErrorPassWordOk] = useState("");
   const [registerState, setRegisterState] = useState("");
+
+  const navigate = useNavigate();
 
   //유효성 검사
   const validdateUsername = (value) => {
@@ -97,6 +100,7 @@ const RegisterPage = () => {
       });
 
       console.log("회원가입성공", response.data);
+      navigate("/login");
     } catch (error) {
       console.log("회원가입 실패", error);
     }
