@@ -3,6 +3,9 @@ import cors from "cors";
 import mongoose from "mongoose";
 import { userModel } from "./model/user.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+const secretKey = "testteest";
+const tokenLife = "1h";
 const app = express();
 const port = 3000;
 const saltRounds = 10; // salt의 길이
@@ -67,10 +70,20 @@ app.post("/login", async (req, res) => {
     if (!passOk) {
       return res.status(401).json({ error: "비밀번호가 틀렸습니다" });
     } else {
-      res.status(200).json({
-        userName: userDOC.userName,
-        _id: userDOC._id,
+      //jwt 토큰 발급
+      const { _id, userName } = userDOC;
+      //값저장
+      const payload = { id: _id, userName };
+      const token = jwt.sign(payload, secretKey, {
+        expiresIn: tokenLife,
       });
+      res
+        .cookie("token", token, {
+          httpOnly: true, //js에서 접근 불가
+          secure: process.env.NODE_ENV === "production", // https사용 시 true로 설정
+          sameSite: "strict", //csrf공격방지
+        })
+        .json();
     }
   } catch (error) {
     console.log("비밀번호확인함수에서일어난에러", error);
