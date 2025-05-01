@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import css from "./RegisterPage.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 const RegisterPage = () => {
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");

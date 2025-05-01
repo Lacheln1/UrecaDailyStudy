@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import css from "./RegisterPage.module.css";
+import axios from "axios";
 const LoginPage = () => {
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
   const [errorUserName, setErrorUserName] = useState("");
   const [errorPassWord, setErrorPassWord] = useState("");
+  //로그인 상태메세지 확인
+  const [loginStatus, setLoginStatus] = useState("");
+
+  //로그인 후 페이지 이동
+  const [redirect, setRedirect] = useState(false);
   const validdateUsername = (value) => {
     if (!value) {
       setErrorUserName("");
@@ -45,7 +51,24 @@ const LoginPage = () => {
 
   const login = async (e) => {
     e.preventDefault();
+    setLoginStatus("");
+    validdateUsername(userName);
+    validatePassword(passWord);
+    if (errorPassWord || errorUserName || !userName || !passWord) {
+      setLoginStatus("아이디와 패스워드를 확인하세요");
+      return;
+    }
+
+    const response = await axios.get(`http://localhost:3000/login`, {
+      userName,
+      passWord,
+    });
+    if (response.status === 200) {
+      setLoginStatus("로그인성공");
+      setRedirect(true);
+    }
   };
+
   return (
     <main className={css.loginpage}>
       <h2>로그인 페이지</h2>
