@@ -6,7 +6,6 @@ import bcrypt from "bcryptjs";
 const app = express();
 const port = 3000;
 const saltRounds = 10; // salt의 길이
-
 app.use(cors());
 app.use(express.json());
 mongoose
@@ -18,7 +17,6 @@ mongoose
   .catch((err) => {
     console.log("몽고db연결안됨", err);
   });
-
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -40,7 +38,6 @@ app.post("/register", async (req, res) => {
   }
 
   //새 사용자를 생성
-  const userDOC = new userModel({ userName, passWord });
   const userDOC = new userModel({
     userName,
     passWord: bcrypt.hashSync(passWord, saltRounds),
@@ -55,6 +52,30 @@ app.post("/register", async (req, res) => {
       _id: savedUser._id,
     },
   });
+});
+
+app.post("/login", async (req, res) => {
+  try {
+    const { userName, passWord } = req.body;
+    const userDOC = await userModel({ userName });
+    if (!userDOC) {
+      return res.status(401).json({ error: "없는 사용자 입니다" });
+    }
+
+    //비밀번호 확인(암호해독)
+    const passOk = bcrypt.compareSync(passWord, userDOC, passWord);
+    if (!passOk) {
+      return res.status(401).json({ error: "비밀번호가 틀렸습니다" });
+    } else {
+      res.status(200).json({
+        userName: userDOC.userName,
+        _id: userDOC._id,
+      });
+    }
+  } catch (error) {
+    console.log("비밀번호확인함수에서일어난에러", error);
+    res.status(500).json({ error: "서버에러" });
+  }
 });
 
 app.listen(port, () => {
