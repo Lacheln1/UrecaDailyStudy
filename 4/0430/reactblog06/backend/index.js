@@ -2,8 +2,10 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import { userModel } from "./model/user.js";
+import bcrypt from "bcryptjs";
 const app = express();
 const port = 3000;
+const saltRounds = 10; // salt의 길이
 
 app.use(cors());
 app.use(express.json());
@@ -39,6 +41,10 @@ app.post("/register", async (req, res) => {
 
   //새 사용자를 생성
   const userDOC = new userModel({ userName, passWord });
+  const userDOC = new userModel({
+    userName,
+    passWord: bcrypt.hashSync(passWord, saltRounds),
+  });
   //몽고db에 저장
   const savedUser = await userDOC.save();
 
