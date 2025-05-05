@@ -5,11 +5,14 @@ import {
   MdCheckBoxOutlineBlank,
   MdRemoveCircleOutline,
 } from "react-icons/md";
-const TodoListItem = ({ todo, onRemove }) => {
+const TodoListItem = ({ todo, onRemove, onToggle }) => {
   const { id, text, checked } = todo;
   return (
     <div className={css.todoListItem}>
-      <div className={`${css.checkBox} ${checked ? css.checked : ""}`}>
+      <div
+        className={`${css.checkBox} ${checked ? css.checked : ""}`}
+        onClick={() => onToggle(id)}
+      >
         {checked ? <MdCheckBox color="#22b8cf" /> : <MdCheckBoxOutlineBlank />}
         <div className={css.text}>{text}</div>
       </div>
