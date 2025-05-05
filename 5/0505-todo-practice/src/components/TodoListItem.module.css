@@ -26,12 +26,12 @@ svg {
   flex: 1;
 }
 
-.text:checked {
+.checked .text {
   color: #adb5bd;
   text-decoration: line-through;
 }
 
-.text:checked svg {
+.checked .text svg {
   color: #22b8cf;
 }
 
