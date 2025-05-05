@@ -1,5 +1,7 @@
-function App() {
-  return <div>todo app 만들기</div>;
-}
+import TodoTemplate from "./components/TodoTemplate";
+
+const App = () => {
+  return <TodoTemplate> todoapp만들기</TodoTemplate>;
+};
 
 export default App;
