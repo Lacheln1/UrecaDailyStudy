@@ -10,7 +10,7 @@ import RefSample from "./practice/RefSample";
 function App() {
   return (
     <>
-      <RefSample />
+      <Info />
     </>
   );
 }
