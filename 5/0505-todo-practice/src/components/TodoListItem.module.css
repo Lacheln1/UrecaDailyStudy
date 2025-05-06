@@ -45,3 +45,7 @@ svg {
 .remove:hover {
   color: #ff8787;
 }
+
+.TodoListItemVirtualized:nth-child(even) {
+  background: #f8f9fa;
+}
