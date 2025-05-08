@@ -7,6 +7,8 @@ import Articles from "./pages/Articles";
 import Article from "./pages/Article";
 import Layout from "./Layout";
 import NotFound from "./pages/NotFound";
+import Login from "./pages/Login";
+import MyPage from "./pages/MyPage";
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
         <Route path=":id" element={<Article />} />
       </Route>
       <Route path="*" element={<NotFound />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/mypage" element={<MyPage />} />
     </Routes>
   );
 };
