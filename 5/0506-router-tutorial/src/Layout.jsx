@@ -11,7 +11,7 @@ const Layout = () => {
 
   const goArticles = () => {
     //articles 경로로 이동
-    navigate("/articles");
+    navigate("/articles", { replace: true });
   };
   return (
     <div>
