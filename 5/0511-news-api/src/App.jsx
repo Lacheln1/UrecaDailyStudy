@@ -1,44 +1,30 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 
 const App = () => {
-  const increase = (number) => {
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const result = number + 10;
-        if (result > 50) {
-          //50보다 높으면 에러 발생
-          const e = new Error("numberTooBig");
-          return reject(e);
-        }
-        resolve(result); // number값에 +10 후 성공 처리
-      }, 1000);
-    });
-    return promise;
+  const [data, setData] = useState(null);
+  const onClick = () => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/todos/1")
+      .then((response) => {
+        setData(response.data);
+      });
   };
 
-  increase(0)
-    .then((number) => {
-      //Promise에서 resolve된 값은 .then을 통해 받아 올 수 있음
-      console.log(number);
-      return increase(number);
-    })
-    .then((number) => {
-      console.log(number);
-      return increase(number);
-    })
-    .then((number) => {
-      console.log(number);
-      return increase(number);
-    })
-    .then((number) => {
-      console.log(number);
-      return increase(number);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-
-  return <div></div>;
+  return (
+    <div>
+      <div>
+        <button onClick={onClick}>불러오기</button>
+      </div>
+      {data && (
+        <textarea
+          rows={7}
+          value={JSON.stringify(data, null, 2)}
+          readOnly={true}
+        />
+      )}
+    </div>
+  );
 };
 
 export default App;
