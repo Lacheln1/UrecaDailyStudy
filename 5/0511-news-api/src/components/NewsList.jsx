@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import NewsItem from "./NewsItem";
-
+import axios from "axios";
 const NewsListBlock = styled.div`
   box-sizing: border-box;
   padding-bottom: 3rem;
@@ -23,13 +23,40 @@ const sampleArticle = {
 };
 
 const NewsList = () => {
+  const [articles, setArticles] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    //async를 사용하는 함수 따로 선언
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          "https://newsapi.org/v2/everything?q=Apple&from=2025-05-12&sortBy=popularity&apiKey=5b14f02f7eb846729e6ae260b4c5b634"
+        );
+        setArticles(response.data.articles);
+      } catch (error) {
+        console.log(error);
+      }
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <NewsListBlock>대기중...</NewsListBlock>;
+  }
+  //아직 articles 값이 설정되지 않았을 때
+  if (!articles) {
+    return null;
+  }
+
+  //articles 값이 유효할 때
   return (
     <NewsListBlock>
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
+      {articles.map((article) => (
+        <NewsItem key={article.url} article={article} />
+      ))}
     </NewsListBlock>
   );
 };
