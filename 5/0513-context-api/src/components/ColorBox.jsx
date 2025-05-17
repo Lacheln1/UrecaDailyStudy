@@ -1,16 +1,23 @@
 import ColorContext from "../contexts/color";
 
-import React from "react";
+import React, { useContext } from "react";
 
 const ColorBox = () => {
+  const { state } = useContext(ColorContext);
   return (
-    <ColorContext.Consumer>
-      {(value) => (
+    <>
+      <div
+        style={{
+          width: "64px",
+          height: "64px",
+          background: state.color,
+        }}
+      >
         <div
-          style={{ width: "64px", height: "64px", background: value.color }}
+          style={{ width: "32px", height: "32px", background: state.subcolor }}
         ></div>
-      )}
-    </ColorContext.Consumer>
+      </div>
+    </>
   );
 };
 
