@@ -12,11 +12,17 @@ export const countersSlice = createSlice({
 
     //리듀서 정의. 리듀서는 상태를 변경하는 함수들을 정의함
     reducers: {
-        increment: (state) => {
-            state.count += 1;
+        increment: (state, action) => {
+            state.count += action.payload || 1;
+        },
+        decrement: (state) => {
+            state.count -= 1;
+        },
+        resetCount: (state) => {
+            state.count = 0;
         },
     },
 });
 
 //액션 생성자를 내보내 컴포넌트에서 사용할 수 있도록 한다
-export const { increment } = countersSlice.actions;
+export const { increment, decrement, resetCount } = countersSlice.actions;
