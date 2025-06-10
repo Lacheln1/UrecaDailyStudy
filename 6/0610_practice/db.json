@@ -1,0 +1,44 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "title": "14K/18K 스타피쉬 헤어핀",
+      "img": "image10.jpg",
+      "price": 205805,
+      "category": "top",
+      "discount": 17
+    },
+    {
+      "id": "2",
+      "title": "14K/18K 심플 진주 반지",
+      "img": "image10.jpg",
+      "price": 147445,
+      "category": "new",
+      "discount": 46
+    },
+    {
+      "id": "3",
+      "title": "14K/18K 데일리 볼귀걸이",
+      "img": "image7.jpg",
+      "price": 18374,
+      "category": "new",
+      "discount": 24
+    },
+    {
+      "id": "4",
+      "title": "14K/18K 심플 반지",
+      "img": "image9.jpg",
+      "price": 418907,
+      "category": "new",
+      "discount": 18
+    },
+    {
+      "id": "5",
+      "title": "14K/18K 더블링 목걸이",
+      "img": "image7.jpg",
+      "price": 364786,
+      "category": "top",
+      "discount": 20
+    }
+  ]
+}
