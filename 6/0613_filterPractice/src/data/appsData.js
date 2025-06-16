@@ -1,0 +1,15 @@
+export const appsData = [
+    { name: "V LIVE", icon: "❤️", color: "bg-red-500" },
+    { name: "KT 5G야구", icon: "⚾", color: "bg-black" },
+    { name: "YouTube", icon: "📺", color: "bg-red-600" },
+    { name: "Spotify", icon: "🎵", color: "bg-green-600" },
+    { name: "Netflix", icon: "🎬", color: "bg-red-700" },
+    { name: "Uber", icon: "🚗", color: "bg-black" },
+    { name: "카카오맵", icon: "🗺️", color: "bg-blue-400" },
+    { name: "Bunjang", icon: "🛍️", color: "bg-purple-500" },
+    { name: "Samsung Health", icon: "❤️", color: "bg-blue-600" },
+    { name: "Naver Map", icon: "📍", color: "bg-green-500" },
+    { name: "Kakao Bank", icon: "🏦", color: "bg-yellow-400" },
+    { name: "Toss", icon: "💳", color: "bg-blue-500" },
+    { name: "멜론", icon: "🎵", color: "bg-pink-500" },
+];

@@ -1,0 +1,10 @@
+id : 1
+"data": "1KB 당",
+"dataPrice" : "0.275",
+
+id:2
+"voiceCall": "70분 ",
+      "voiceCallFirstDes" : "+지정번호 3개 음성통화 50분",
+      "voiceCallSecondDes":"영상통화 30분 사용 가능",
+"basicBenefit": "실버지킴이",
+      "basicBenefitFirstDes": "(1시간~3시간마다 문자메시지로 내 위치를 보호자에게 알려주는 서비스) ",
