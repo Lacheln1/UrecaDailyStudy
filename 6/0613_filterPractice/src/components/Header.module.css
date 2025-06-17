@@ -1,0 +1,66 @@
+.header {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+.leftSection {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.filterButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.filterButton:hover {
+    background-color: #1d4ed8;
+}
+
+.appliedFilters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filterTag {
+    background-color: #dbeafe;
+    color: #2563eb;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.planCount {
+    font-size: 14px;
+    color: #6b7280;
+}
