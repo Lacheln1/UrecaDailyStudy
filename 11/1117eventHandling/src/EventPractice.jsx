@@ -13,6 +13,8 @@ const EventPractice = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
             />
+
+            <button onClick={() => setMessage("")}>초기화</button>
         </div>
     );
 };
