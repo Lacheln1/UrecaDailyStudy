@@ -7,6 +7,7 @@ const EventPractice = () => {
     });
 
     const { username, message } = form;
+
     const onChange = (e) => {
         const nextForm = {
             ...form,
@@ -15,9 +16,20 @@ const EventPractice = () => {
         setForm(nextForm);
     };
 
-    const enterEvent = (e) => {
-        if (e.key === "Enter") onChange(e);
+    const handleSubmit = () => {
+        alert(username + " : " + message);
+        setForm({
+            username: "",
+            message: "",
+        });
     };
+
+    const enterEvent = (e) => {
+        if (e.key === "Enter") {
+            handleSubmit();
+        }
+    };
+
     return (
         <div>
             <h1>이벤트 연습</h1>
@@ -29,6 +41,7 @@ const EventPractice = () => {
                 placeholder="아무거나 입력해보세요"
                 value={message}
                 onChange={onChange}
+                onKeyDown={enterEvent}
             />
 
             <input
@@ -40,7 +53,7 @@ const EventPractice = () => {
                 onKeyDown={enterEvent}
             />
 
-            <button onClick={onChange}>확인</button>
+            <button onClick={handleSubmit}>확인</button>
         </div>
     );
 };
