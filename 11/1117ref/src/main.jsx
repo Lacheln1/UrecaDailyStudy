@@ -6,9 +6,10 @@ import ValidationSample from "./ValidationSample.jsx";
 import PracticeUseEffect from "./practiceUseEffect.jsx";
 import ShoppingCart from "./ShoppingReduce.jsx";
 import Average from "./Average.jsx";
+import RefSample from "./RefSample.jsx";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
-        <Average />
+        <RefSample />
     </StrictMode>
 );
