@@ -29,3 +29,31 @@ function solution(answers) {
 
     return highestScores;
 }
+
+//행렬의 곱셈
+function solution(arr1, arr2) {
+    //행렬 arr1과 arr2의 행과 열의 수
+    const row1 = arr1.length;
+    const col1 = arr1[0].length;
+
+    const row2 = arr2.length;
+    const col2 = arr2[0].length;
+
+    //결과를 저장할 2차원 배열 초기화
+    const ret = [];
+    for (let i = 0; i < row1; i++) {
+        ret.push(new Array(col2).fill(0));
+    }
+
+    // 첫 번째 행렬 arr1의 각 행과 두 번째 행렬 arr2의 각 열에 대해
+    for (let i = 0; i < row1; i++) {
+        for (let j = 0; j < col2; j++) {
+            // 두 행렬의 데이터를 곱해 결과 배열에 더해줌
+            for (let k = 0; k < col1; k++) {
+                ret[i][j] += arr1[i][k] * arr2[k][j];
+            }
+        }
+    }
+
+    return ret;
+}
