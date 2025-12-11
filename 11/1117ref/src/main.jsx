@@ -7,9 +7,10 @@ import PracticeUseEffect from "./practiceUseEffect.jsx";
 import ShoppingCart from "./ShoppingReduce.jsx";
 import Average from "./Average.jsx";
 import RefSample from "./RefSample.jsx";
+import Info from "./Info.jsx";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
-        <RefSample />
+        <Info />
     </StrictMode>
 );
