@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export function useWebSocket(url) {
     //websocket 인스턴스를 저장 (리렌더링 시에도 유지)
@@ -15,7 +15,7 @@ export function useWebSocket(url) {
     const reconnectTimer = useRef(null);
 
     //websocket 연결 함수
-    const connect = () => {
+    const connect = useCallback(() => {
         try {
             //이미 연결되어 있으면 리턴
             if (ws.current?.readyState === WebSocket.OPEN) {
@@ -60,7 +60,7 @@ export function useWebSocket(url) {
             console.error("websocket 연결 실패: ", error);
             setIsConnected(false);
         }
-    };
+    }, [url]);
 
     //메시지 전송 함수
     const sendMessage = (data) => {
@@ -101,7 +101,7 @@ export function useWebSocket(url) {
                 ws.current.close();
             }
         };
-    }, [url]);
+    }, [connect]);
 
     return {
         isConnected,
