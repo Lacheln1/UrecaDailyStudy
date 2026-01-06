@@ -102,7 +102,7 @@ export function useWebSocket(url) {
                 ws.current.close();
             }
         };
-    }, [connect]);
+    }, [url]);
 
     return {
         isConnected,
