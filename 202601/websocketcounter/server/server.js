@@ -1,7 +1,7 @@
 import { WebSocketServer } from "ws";
 
 //웹 소켓 서버 생성
-const wss = new WebSocket({ port: 8080 });
+const wss = new WebSocketServer({ port: 8080 });
 
 //전역 카운터
 let counter = 0;
