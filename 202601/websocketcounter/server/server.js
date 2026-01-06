@@ -1,3 +1,5 @@
+import { WebSocketServer } from "ws";
+
 //웹 소켓 서버 생성
 const wss = new WebSocket({ port: 8080 });
 
