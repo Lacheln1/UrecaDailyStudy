@@ -27,6 +27,7 @@ export function useWebSocket(url) {
             //연결 성공
             ws.current.onopen = () => {
                 console.log("websocket 연결 성공");
+                setIsConnected(true);
                 reconnectAttempts.current = 0; // 재연결 카운터 리셋
             };
 
