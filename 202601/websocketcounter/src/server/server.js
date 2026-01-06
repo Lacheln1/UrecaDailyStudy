@@ -19,7 +19,7 @@ function broadcast(data) {
 //클라이언트가 연결되었을 때
 wss.on("connection", (ws) => {
     console.log("새로운 클라이언트 연결됨");
-    console.log(`현재 접속자 수: ${wss.client.size}`);
+    console.log(`현재 접속자 수: ${wss.clients.size}`);
 
     //새 클라이언트에게 현재 카운터 값 전송
     ws.send(
