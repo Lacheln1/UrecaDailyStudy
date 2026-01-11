@@ -26,7 +26,7 @@ function getClientsCount() {
 io.on("connection", (socket) => {
     console.log("새로운 클라이언트 연결됨");
     console.log(`socket ID : ,${socket.id}`);
-    console.log(`현재 접속자 수 : ${getClientsCount}`);
+    console.log(`현재 접속자 수 : ${getClientsCount()}`);
 
     // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // 초기 데이터 전송 (특정 클라이언트에게만)
