@@ -8,11 +8,12 @@ let counter = 0;
 
 //연결된 모든 클라이언트에게 메시지를 보내는 함수
 function broadcast(data) {
-    const message = JSON.stringify(data);
+    const message = JSON.stringify(data); //JSON 직렬화 필요
 
     wss.clients.forEach((client) => {
         //클라이언트가 연결되어있고, OPEN 상태일 때만 전송
         if (client.readyState === 1) {
+            //상태 체크 필요
             client.send(message);
         }
     });
@@ -26,6 +27,7 @@ wss.on("connection", (ws) => {
     //새 클라이언트에게 현재 카운터 값 전송
     ws.send(
         JSON.stringify({
+            //JSON.stringify 필요
             type: "INIT",
             counter: counter,
             clients: wss.clients.size,
@@ -41,11 +43,13 @@ wss.on("connection", (ws) => {
     //클라이언트로부터 메시지를 받았을 때
     ws.on("message", (data) => {
         try {
-            const message = JSON.parse(data);
+            const message = JSON.parse(data); //JSON 파싱 필요
             console.log("받은 메시지: ", message);
 
             //메시지 타입에 따라 처리
-            switch (message.type) {
+            switch (
+                message.type //Switch문으로 타입 분기
+            ) {
                 case "INCREMENT":
                     counter++;
                     broadcast({
