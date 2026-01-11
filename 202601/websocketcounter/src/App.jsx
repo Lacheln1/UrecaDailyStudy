@@ -1,46 +1,150 @@
 import { useEffect, useState } from "react";
-import { useWebSocket } from "./hooks/useWebSocket";
+import { io } from "socket.io-client";
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// Socket.io 클라이언트 생성 (컴포넌트 외부에서 한번만)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// Native: new WebSocket('ws://localhost:8080')
+// Socket.io: io('http://localhost:8080', options)
+
+const socket = io("http://localhost:8080", {
+    autoConnect: true, //자동 연결(기본값 : true)
+    reconnection: true, //자동 재연결 활성화
+    reconnectionDelay: 1000, //재연결 대기 시간 1초
+    reconnectionDelayMax: 5000, // 최대 대기 시간 5초
+    reconnectionAttempts: 5, //최대 재연결 시도 횟수
+    timeout: 10000, //연결 타임아웃 10초
+});
+
+//개발 환경에서 디버깅용 로그
+socket.onAny((eventName, ...args) => {
+    console.log(`이벤트:${eventName}`, args);
+});
 
 function App() {
     const [counter, setCounter] = useState(0);
     const [clients, setClients] = useState(0);
+    const [isConnected, setIsConnected] = useState(false);
     const [messages, setMessage] = useState([]);
 
-    //WebSocket 연결
-    const { isConnected, sendMessage, onMessage } = useWebSocket("ws://localhost:8080");
+    function addMessage(type, text) {
+        setMessage((prev) => [
+            ...prev.slice(-9),
+            {
+                type,
+                text,
+                time: new Date().toLocaleTimeString(),
+            },
+        ]);
+    }
 
-    //메시지 수신 처리
     useEffect(() => {
-        onMessage((data) => {
-            //메시지 로그 추가
-            setMessage((prev) => [
-                ...prev.slice(-9),
-                {
-                    type: data.type,
-                    time: new Date().toLocaleTimeString(),
-                },
-            ]);
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // 연결 상태 이벤트
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // Native: ws.onopen / ws.onclose
+        // Socket.io: socket.on('connect') / socket.on('disconnect')
 
-            switch (data.type) {
-                case "INIT":
-                    setCounter(data.counter);
-                    setClients(data.clients);
-                    break;
-                case "COUNTER_UPDATE":
-                    setCounter(data.counter);
-                    break;
-                case "CLIENTS_UPDATE":
-                    setClients(data.clients);
-                    break;
-            }
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        function onConnect() {
+            console.log("socket io 연결 성공");
+            console.log(`socket ID: ${socket.id}`);
+            setIsConnected(true);
+
+            addMessage("connect", "서버 연결됨");
+        }
+
+        function onDisconnect(reason) {
+            console.log("socket io 종료");
+            console.log(`종료 이유: ${reason}`);
+            setIsConnected(false);
+
+            addMessage("disconnect", "연결 종료");
+        }
+
+        //재연결 시도
+        function onReconnectAttempt(attemptNumber) {
+            console.log(`재연결 시도중... (${attemptNumber}번째)`);
+            addMessage("reconnecting", `재연결 시도${attemptNumber}`);
+        }
+
+        //재연결 실패
+        function onReconnectFailed() {
+            console.log("재연결 실패");
+            addMessage("error", "재연결 실패");
+        }
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // 데이터 수신 이벤트
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // Native: ws.onmessage + switch(data.type)
+        // Socket.io: socket.on('이벤트명', 콜백)
+
+        function onInit(data) {
+            console.log("초기 데이터 수신: ", data);
+            setCounter(data.counter);
+            setClients(data.clients);
+            addMessage("init", `초기 값: ${data.counter}`);
+        }
+
+        function onCounterUpdate(value) {
+            console.log("카운터 없데이트: ", value);
+            setCounter(value);
+            addMessage("counter-update", `새 값: ${value}`);
+        }
+
+        function onClientsUpdate(count) {
+            console.log("접속자 수 업데이트:", count);
+            setClients(count);
+            addMessage("clients-update", `접속자: ${count}명`);
+        }
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // 이벤트 리스너 등록
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        socket.on("connect", onConnect);
+        socket.on("disconnect", onDisconnect);
+        socket.on("reconnect_attempt", onReconnectAttempt);
+        socket.on("reconnect_failed", onReconnectFailed);
+
+        socket.on("init", onInit);
+        socket.on("counter-update", onCounterUpdate);
+        socket.on("clients-update", onClientsUpdate);
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // Cleanup: 컴포넌트 언마운트 시 리스너 제거
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        return () => {
+            socket.off("connect", onConnect);
+            socket.off("disconnect", onDisconnect);
+            socket.off("reconnect_attempt", onReconnectAttempt);
+            socket.off("reconnect_failed", onReconnectFailed);
+
+            socket.off("init", onInit);
+            socket.off("counter-update", onCounterUpdate);
+            socket.off("clients-update", onClientsUpdate);
+        };
     }, []);
 
-    //버튼 핸들러들
-    const handleIncrement = () => sendMessage({ type: "INCREMENT" });
-    const handleDecrement = () => sendMessage({ type: "DECREMENT" });
-    const handleReset = () => sendMessage({ type: "RESET" });
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // 버튼 핸들러 (이벤트 전송)
+    // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // Native: ws.send(JSON.stringify({ type: 'INCREMENT' }))
+    // Socket.io: socket.emit('increment')
+
+    const handleIncrement = () => {
+        socket.emit("increment");
+        console.log("increment 이벤트 전송");
+    };
+
+    const handleDecrement = () => {
+        socket.emit("decrement");
+        console.log("decrement 이벤트 전송");
+    };
+
+    const handleReset = () => {
+        socket.emit("reset");
+        console.log("reset 이벤트 전송");
+    };
 
     return (
         <div
